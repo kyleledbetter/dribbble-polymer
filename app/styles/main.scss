@@ -131,7 +131,7 @@ core-scroll-header-panel {
 /* background for toolbar when it is at its full size */
 core-scroll-header-panel::shadow #headerBg {
   background-position: 50% -5px;
-  background-image:url('https://d13yacurqjgara.cloudfront.net/users/13307/screenshots/1844803/tower_defence.jpg');
+  background-image:url('https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg');
 }
 /* background for toolbar when it is condensed */
 core-scroll-header-panel::shadow #condensedHeaderBg {
@@ -170,4 +170,10 @@ sample-content {
 }
 :host([favorite]) core-icon-button {
   color: #da4336;
+}
+.tags {
+  paper-button {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
 }
