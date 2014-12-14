@@ -74,19 +74,39 @@ paper-tab::shadow #ink {
 }
 
 paper-fab {
-  left: 93.2%;
-  top: 90px;
   background-color: $secondary;
+}
+core-drawer-panel[narrow] {
+  & + paper-fab {
+    right: 30px;
+    bottom: -30px;
+  }
+}
+core-drawer-panel:not([narrow]) {
+  & + paper-fab {
+    left: 93.2%;
+    top: 90px;
+  }
 }
 #card {
   display: block;
-  margin: 64px 120px 60px 5px;
   background-color: #fff;
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
-  border-radius: 4px;
   overflow: hidden;
   position: relative;
-  height: 90%;
+  
+}
+core-drawer-panel[narrow] {
+  #card {
+    height: 100%;
+  }
+}
+core-drawer-panel:not([narrow]) {
+  #card {
+    margin: 64px 120px 60px 5px;
+    height: 90%;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    border-radius: 4px;
+  }
 }
 .element-label {
   height: 80px;
@@ -147,4 +167,7 @@ sample-content {
     float: left;
     margin-right: 10px;
   }
+}
+:host([favorite]) core-icon-button {
+  color: #da4336;
 }
