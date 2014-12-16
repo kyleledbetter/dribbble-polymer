@@ -3,16 +3,17 @@
 
     <template>
         <link rel="stylesheet" href="x-dribbble.css">
-
+        <app-globals id="globals" name="Dmitriy Kharaberyush" title="Casette Lollipop" image_url="https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg"></app-globals>
         <polymer-jsonp id="ajax" auto url="http://api.dribbble.com/shots/{{list}}?per_page={{count}}&callback=" response="{{shots}}"></polymer-jsonp>
 
         <div class="dribbble">
-            
-            <template id="shots" repeat="{{item in shots}}" index="i">
-                <paper-item>
-                  <core-image style="height: 200px; width: auto; background-color: pink;" preload src="{{item.image_url}}"></core-image>
-                </paper-item>
-            </template>
+            <core-selector id="menu" class="list" selected="1" selectedAttribute="">
+                <template id="shots" repeat="{{item in shots}}" index="i">
+                    <paper-item on-tap="{{update}}" id="item{{item.id}}" data-id="{{item.id}}" data-name="{{item.player.name}}" data-title="{{item.title}}" data-image_url="{{item.image_url}}" data-description="{{item.description}}" data-teaser="{{item.image_teaser_url}}" data-rebounds="{{item.rebounds_count}}" data-comments="{{item.comments_count}}" data-views="{{item.views_count}}" data-likes="{{item.likes_count}}" data-created="{{item.created_at}}" data-url="{{item.url}}">
+                      <core-image style="height: 200px; width: auto; background-color: pink;" preload src="{{item.image_url}}"></core-image>
+                    </paper-item>
+                </template>
+            </core-selector>
         </div>
     </template>
 
@@ -38,7 +39,22 @@
                         this.fire('x-dribbble-load', {response: e.detail.response.shots});
                     }.bind(this)
                 );
-            }
+            },
+            
+            // set value on tap
+            update: function(event, detail, sender, attributes) {
+                this.$.globals.values.id = sender.attributes['data-id'].value;
+                this.$.globals.values.name = sender.attributes['data-name'].value;
+                this.$.globals.values.title = sender.attributes['data-title'].value;
+                this.$.globals.values.image_url = sender.attributes['data-image_url'].value;
+                this.$.globals.values.description = sender.attributes['data-description'].value;
+                this.$.globals.values.rebounds = sender.attributes['data-rebounds'].value;
+                this.$.globals.values.views = sender.attributes['data-views'].value;
+                this.$.globals.values.likes = sender.attributes['data-likes'].value;
+                this.$.globals.values.created = sender.attributes['data-created'].value;
+                this.$.globals.values.url = sender.attributes['data-url'].value;
+                this.$.globals.values.comments = sender.attributes['data-comments'].value;
+            },
         });
 
       })();
