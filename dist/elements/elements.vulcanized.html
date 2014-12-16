@@ -4046,7 +4046,7 @@ Available transitions
 
           <div class="card-content">
             <core-scroll-header-panel condenses="" condensedheaderheight="67px" keepcondensedheader="true">
-              <core-toolbar class="" style="background-image:url({{$.globals.values.image_url}})">
+              <core-toolbar id="toolbar" class="" style="background: no-repeat url({{$.globals.values.image_url}}); background-size: 100% auto;">
                 <paper-icon-button core-drawer-toggle="" icon="menu"></paper-icon-button>
                 <paper-icon-button icon="arrow-back" hidden?="{{!largeScreen}}"></paper-icon-button>
                 <div flex=""></div>
@@ -4171,7 +4171,7 @@ Available transitions
     <add-shot id="dialog" transition="core-transition-bottom">
     </add-shot>
   </template>
-  <script>(function(){Polymer("shots-page",{domReady:function(){var titleStyle=this.$.title.style;document.addEventListener("core-header-transform",function(e){var d=e.detail;var m=d.height-d.condensedHeight;var scale=Math.max(.55,(m-d.y)/(m/.25)+.55);titleStyle.transform=titleStyle.webkitTransform="scale("+scale+") translateZ(0)"})},willPrepare:function(){this.super();this.$.scrollHeaderPanel.measureHeaderHeight();this.$.scrollHeaderPanel.scroller.scrollTop=0},selected:0,toggle:function(){this.$.dialog.toggle()}})})();</script>
+  <script>(function(){Polymer("shots-page",{domReady:function(){var titleStyle=this.$.title.style;var toolbarStyle=this.$.toolbar.style;document.addEventListener("core-header-transform",function(e){var d=e.detail;var m=d.height-d.condensedHeight;var scale=Math.max(.55,(m-d.y)/(m/.25)+.55);titleStyle.transform=titleStyle.webkitTransform="scale("+scale+") translateZ(0)";var background=Math.max(0,d.y);toolbarStyle.backgroundPosition="0px "+"-"+background+"px"})},willPrepare:function(){this.super();this.$.scrollHeaderPanel.measureHeaderHeight();this.$.scrollHeaderPanel.scroller.scrollTop=0},selected:0,toggle:function(){this.$.dialog.toggle()}})})();</script>
 </polymer-element>
 <polymer-element name="html-echo" attributes="html" assetpath="shots-page/">
     <script>Polymer("html-echo",{htmlChanged:function(){this.innerHTML=this.html}});</script>
