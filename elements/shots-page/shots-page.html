@@ -27,7 +27,7 @@
 
           <div class="card-content">
             <core-scroll-header-panel condenses="" condensedHeaderHeight="67px" keepCondensedHeader="true">
-              <core-toolbar class="" style="background-image:url({{$.globals.values.image_url}})">
+              <core-toolbar id="toolbar" class="" style="background: no-repeat url({{$.globals.values.image_url}}); background-size: 100% auto;">
                 <paper-icon-button core-drawer-toggle icon="menu"></paper-icon-button>
                 <paper-icon-button icon="arrow-back" hidden?="{{!largeScreen}}"></paper-icon-button>
                 <div flex></div>
@@ -160,12 +160,16 @@
           domReady: function() {
           // custom transformation: scale header's title
           var titleStyle = this.$.title.style;
+          var toolbarStyle = this.$.toolbar.style;
           document.addEventListener('core-header-transform', function(e) {
             var d = e.detail;
             var m = d.height - d.condensedHeight;
             var scale = Math.max(0.55, (m - d.y) / (m / 0.25) + 0.55);
             titleStyle.transform = titleStyle.webkitTransform =
               'scale(' + scale + ') translateZ(0)';
+              
+            var background = Math.max(0, d.y);
+            toolbarStyle.backgroundPosition = '0px ' + '-' + background + 'px' ;
           });
         },
         willPrepare: function() {
