@@ -37,19 +37,13 @@
 <body unresolved is="auto-binding">
   <template id="app" is="auto-binding">
 
-    <!-- TODO: Hero transition for desktop -->
-    <core-animated-pages id="pages" selected="1"
-                         transitions="cross-fade fade-slide-up fade-scale" fit>
-
-      <section layout vertical>
-        <shots-page class="page" id="shots"
-                       cross-fade?="{{largeScreen}}"
-                       heading="{{heading}}"
-                       flex>
-        </shots-page>
-      </section>
-
-    </core-animated-pages>
+    <section layout vertical>
+      <shots-page class="page" id="shots"
+                     cross-fade?="{{largeScreen}}"
+                     heading="{{heading}}"
+                     flex>
+      </shots-page>
+    </section>
 
   </template>
 
