@@ -1791,20 +1791,21 @@ license that can be found in the LICENSE file.
 
     <template>
         <style>:host{display:block}::shadow img{width:100%;height:auto}</style>
-
+        <app-globals id="globals" name="Dmitriy Kharaberyush" title="Casette Lollipop" image_url="https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg"></app-globals>
         <polymer-jsonp id="ajax" auto="" url="http://api.dribbble.com/shots/{{list}}?per_page={{count}}&amp;callback=" response="{{shots}}"></polymer-jsonp>
 
         <div class="dribbble">
-            
-            <template id="shots" repeat="{{item in shots}}" index="i">
-                <paper-item>
-                  <core-image style="height: 200px; width: auto; background-color: pink;" preload="" src="{{item.image_url}}"></core-image>
-                </paper-item>
-            </template>
+            <core-selector id="menu" class="list" selected="1" selectedattribute="">
+                <template id="shots" repeat="{{item in shots}}" index="i">
+                    <paper-item on-tap="{{update}}" id="item{{item.id}}" data-id="{{item.id}}" data-name="{{item.player.name}}" data-title="{{item.title}}" data-image_url="{{item.image_url}}" data-description="{{item.description}}" data-teaser="{{item.image_teaser_url}}" data-rebounds="{{item.rebounds_count}}" data-comments="{{item.comments_count}}" data-views="{{item.views_count}}" data-likes="{{item.likes_count}}" data-created="{{item.created_at}}" data-url="{{item.url}}">
+                      <core-image style="height: 200px; width: auto; background-color: pink;" preload="" src="{{item.image_url}}"></core-image>
+                    </paper-item>
+                </template>
+            </core-selector>
         </div>
     </template>
 
-    <script>(function(){Polymer("x-dribbble",{count:20,shotsPerRow:1,shotWidthPercent:20,shots:[],ready:function(){this.shotWidthPercent=100/this.shotsPerRow;this.$.shots.model=this.shots;this.$.ajax.addEventListener("polymer-response",function(e){this.shots={shots:e.detail.response.shots};this.$.shots.model={shots:e.detail.response.shots};this.fire("x-dribbble-load",{response:e.detail.response.shots})}.bind(this))}})})();</script>
+    <script>(function(){Polymer("x-dribbble",{count:20,shotsPerRow:1,shotWidthPercent:20,shots:[],ready:function(){this.shotWidthPercent=100/this.shotsPerRow;this.$.shots.model=this.shots;this.$.ajax.addEventListener("polymer-response",function(e){this.shots={shots:e.detail.response.shots};this.$.shots.model={shots:e.detail.response.shots};this.fire("x-dribbble-load",{response:e.detail.response.shots})}.bind(this))},update:function(event,detail,sender,attributes){this.$.globals.values.id=sender.attributes["data-id"].value;this.$.globals.values.name=sender.attributes["data-name"].value;this.$.globals.values.title=sender.attributes["data-title"].value;this.$.globals.values.image_url=sender.attributes["data-image_url"].value;this.$.globals.values.description=sender.attributes["data-description"].value;this.$.globals.values.rebounds=sender.attributes["data-rebounds"].value;this.$.globals.values.views=sender.attributes["data-views"].value;this.$.globals.values.likes=sender.attributes["data-likes"].value;this.$.globals.values.created=sender.attributes["data-created"].value;this.$.globals.values.url=sender.attributes["data-url"].value;this.$.globals.values.comments=sender.attributes["data-comments"].value}})})();</script>
 
 </polymer-element>
 </div><div hidden><!--
@@ -1817,7 +1818,7 @@ license that can be found in the LICENSE file.
     subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 <polymer-element name="sample-content" attributes="size" assetpath="../bower_components/core-scroll-header-panel/demos/">
-<script>(function(){var strings=["Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.","Ut labores minimum atomorum pro. Laudem tibique ut has.","Fugit adolescens vis et, ei graeci forensibus sed.","Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no.","Ea duis bonorum nec, falli paulo aliquid ei eum.","Usu eu novum principes, vel quodsi aliquip ea.","Has at minim mucius aliquam, est id tempor laoreet.","Pro saepe pertinax ei, ad pri animal labores suscipiantur.","Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.","Iisque perfecto dissentiet cum et, sit ut quot mandamus, ut vim tibique splendide instructior.","Id nam odio natum malorum, tibique copiosae expetenda mel ea.","Cu mei vide viris gloriatur, at populo eripuit sit.","Modus commodo minimum eum te, vero utinam assueverit per eu.","No nam ipsum lorem aliquip, accumsan quaerendum ei usu."];function randomString(){return strings[Math.floor(Math.random()*strings.length)]}function randomLetter(){return String.fromCharCode(65+Math.floor(Math.random()*26))}Polymer("sample-content",{size:0,sizeChanged:function(){this.innerHTML="";for(var i=0;i<this.size;i++){this.innerHTML+='<div style="border: 1px solid #bebebe; padding: 16px; margin: 16px; border-radius: 5px; background-color: #fff; color: #555;">'+'<div style="display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #666; text-align: center;">'+randomLetter()+randomLetter()+"</div>"+'<div style="font-size: 22px; padding: 8px 0 16px; color: #888;">'+randomString()+"</div>"+'<div style="font-size: 16px; padding-bottom: 8px;">'+randomString()+"</div>"+'<div style="font-size: 12px;">'+randomString()+"</div>"+'<div style="font-size: 12px;">'+randomString()+"</div>"+"</div>"}}})})();</script>
+<script>(function(){var strings=["Lorem ipsum dolor sit amet, per in nusquam nominavi periculis, sit elit oportere ea.","Ut labores minimum atomorum pro. Laudem tibique ut has.","Fugit adolescens vis et, ei graeci forensibus sed.","Convenire definiebas scriptorem eu cum. Sit dolor dicunt consectetuer no.","Ea duis bonorum nec, falli paulo aliquid ei eum.","Usu eu novum principes, vel quodsi aliquip ea.","Has at minim mucius aliquam, est id tempor laoreet.","Pro saepe pertinax ei, ad pri animal labores suscipiantur.","Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.","Iisque perfecto dissentiet cum et, sit ut quot mandamus, ut vim tibique splendide instructior.","Id nam odio natum malorum, tibique copiosae expetenda mel ea.","Cu mei vide viris gloriatur, at populo eripuit sit.","Modus commodo minimum eum te, vero utinam assueverit per eu.","No nam ipsum lorem aliquip, accumsan quaerendum ei usu."];function randomString(){return strings[Math.floor(Math.random()*strings.length)]}function randomLetter(){return String.fromCharCode(65+Math.floor(Math.random()*26))}Polymer("sample-content",{size:0,sizeChanged:function(){this.innerHTML="";for(var i=0;i<this.size;i++){this.innerHTML+='<div style="border: 1px solid #bebebe; padding: 16px; margin: 16px; border-radius: 5px; background-color: #fff; color: #555;">'+'<div style="display: inline-block; height: 64px; width: 64px; border-radius: 50%; background: #ddd; line-height: 64px; font-size: 30px; color: #666; text-align: center;">'+randomLetter()+"</div>"+'<div style="font-size: 22px; padding: 8px 0 16px; color: #888;">'+randomString()+"</div>"+'<div style="font-size: 16px; padding-bottom: 8px;">'+randomString()+"</div>"+'<div style="font-size: 12px;">'+randomString()+"</div>"+'<div style="font-size: 12px;">'+randomString()+"</div>"+"</div>"}}})})();</script>
 </polymer-element>
 </div><div hidden><!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
@@ -2213,6 +2214,63 @@ The complete set of contributors may be found at http://polymer.github.io/CONTRI
 Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
+
+
+
+<core-iconset-svg id="communication" iconsize="24">
+<svg><defs>
+<g id="business"><path d="M12 7v-4h-10v18h20v-14h-10zm-6 12h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm4 12h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm0-4h-2v-2h2v2zm10 12h-8v-2h2v-2h-2v-2h2v-2h-2v-2h8v10zm-2-8h-2v2h2v-2zm0 4h-2v2h2v-2z"></path></g>
+<g id="call"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1v3.49c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></g>
+<g id="call-end"><path d="M12 9c-1.6 0-3.15.25-4.6.72v3.1c0 .39-.23.74-.56.9-.98.49-1.87 1.12-2.66 1.85-.18.18-.43.28-.7.28-.28 0-.53-.11-.71-.29l-2.48-2.48c-.18-.17-.29-.42-.29-.7 0-.28.11-.53.29-.71 3.05-2.89 7.17-4.67 11.71-4.67s8.66 1.78 11.71 4.67c.18.18.29.43.29.71 0 .28-.11.53-.29.71l-2.48 2.48c-.18.18-.43.29-.71.29-.27 0-.52-.11-.7-.28-.79-.74-1.69-1.36-2.67-1.85-.33-.16-.56-.5-.56-.9v-3.1c-1.44-.48-2.99-.73-4.59-.73z"></path></g>
+<g id="call-made"><path d="M9 5v2h6.59l-11.59 11.59 1.41 1.41 11.59-11.59v6.59h2v-10z"></path></g>
+<g id="call-merge"><path d="M17 20.41l1.41-1.41-3.41-3.41-1.41 1.41 3.41 3.41zm-9.5-12.41h3.5v5.59l-5.41 5.41 1.41 1.41 6-6v-6.41h3.5l-4.5-4.5-4.5 4.5z"></path></g>
+<g id="call-missed"><path d="M19.59 7l-7.59 7.59-5.59-5.59h4.59v-2h-8v8h2v-4.59l7 7 9-9z"></path></g>
+<g id="call-received"><path d="M20 5.41l-1.41-1.41-11.59 11.59v-6.59h-2v10h10v-2h-6.59z"></path></g>
+<g id="call-split"><path d="M14 4l2.29 2.29-2.88 2.88 1.42 1.42 2.88-2.88 2.29 2.29v-6zm-4 0h-6v6l2.29-2.29 4.71 4.7v7.59h2v-8.41l-5.29-5.3z"></path></g>
+<g id="chat"><path d="M20 2h-16c-1.1 0-1.99.9-1.99 2l-.01 18 4-4h14c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm-14 7h12v2h-12v-2zm8 5h-8v-2h8v2zm4-6h-12v-2h12v2z"></path></g>
+<g id="clear-all"><path d="M5 13h14v-2h-14v2zm-2 4h14v-2h-14v2zm4-10v2h14v-2h-14z"></path></g>
+<g id="comment"><path d="M21.99 4c0-1.1-.89-2-1.99-2h-16c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4-.01-18zm-3.99 10h-12v-2h12v2zm0-3h-12v-2h12v2zm0-3h-12v-2h12v2z"></path></g>
+<g id="contacts"><path d="M20 0h-16v2h16v-2zm-16 24h16v-2h-16v2zm16-20h-16c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm-8 2.75c1.24 0 2.25 1.01 2.25 2.25s-1.01 2.25-2.25 2.25-2.25-1.01-2.25-2.25 1.01-2.25 2.25-2.25zm5 10.25h-10v-1.5c0-1.67 3.33-2.5 5-2.5s5 .83 5 2.5v1.5z"></path></g>
+<g id="dialer-sip"><path d="M17 3h-1v5h1v-5zm-2 2h-2v-1h2v-1h-3v3h2v1h-2v1h3v-3zm3-2v5h1v-2h2v-3h-3zm2 2h-1v-1h1v1zm0 10.5c-1.25 0-2.45-.2-3.57-.57-.35-.11-.74-.03-1.01.24l-2.2 2.2c-2.83-1.44-5.15-3.75-6.59-6.59l2.2-2.21c.27-.26.35-.65.24-1-.37-1.12-.57-2.32-.57-3.57 0-.55-.45-1-1-1h-3.5c-.55 0-1 .45-1 1 0 9.39 7.61 17 17 17 .55 0 1-.45 1-1v-3.5c0-.55-.45-1-1-1z"></path></g>
+<g id="dialpad"><path d="M12 19c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6-18c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12-8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-6 8c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0-6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></g>
+<g id="dnd-on"><path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm0 18c-4.42 0-8-3.58-8-8 0-1.85.63-3.55 1.69-4.9l11.21 11.21c-1.35 1.06-3.05 1.69-4.9 1.69zm6.31-3.1l-11.21-11.21c1.35-1.06 3.05-1.69 4.9-1.69 4.42 0 8 3.58 8 8 0 1.85-.63 3.55-1.69 4.9z"></path></g>
+<g id="email"><path d="M20 4h-16c-1.1 0-1.99.9-1.99 2l-.01 12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm0 4l-8 5-8-5v-2l8 5 8-5v2z"></path></g>
+<g id="forum"><path d="M21 6h-2v9h-13v2c0 .55.45 1 1 1h11l4 4v-15c0-.55-.45-1-1-1zm-4 6v-9c0-.55-.45-1-1-1h-13c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path></g>
+<g id="hangout"><path d="M11.5 2c-4.69 0-8.5 3.81-8.5 8.5s3.81 8.5 8.5 8.5h.5v3.5c4.86-2.34 8-7.5 8-12 0-4.69-3.81-8.5-8.5-8.5zm-.5 9l-1 2h-1.5l1-2h-1.5v-3h3v3zm4 0l-1 2h-1.5l1-2h-1.5v-3h3v3z"></path></g>
+<g id="hangout-video"><path d="M20 4h-16c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm-2 12l-4-3.2v3.2h-8v-8h8v3.2l4-3.2v8z"></path></g>
+<g id="hangout-video-off"><path d="M20 4h-12.18l4 4h2.18v2.18l.57.57 3.43-2.75v6.18l3.98 3.98.02-.16v-12c0-1.1-.9-2-2-2zm-17.73-3l-1.27 1.27 2 2c-.59.35-1 .99-1 1.73v12c0 1.1.9 2 2 2h14.73l2 2 1.27-1.27-19.73-19.73zm3.73 7h.73l7.27 7.27v.73h-8v-8z"></path></g>
+<g id="import-export"><path d="M9 3l-4 3.99h3v7.01h2v-7.01h3l-4-3.99zm7 14.01v-7.01h-2v7.01h-3l4 3.99 4-3.99h-3z"></path></g>
+<g id="invert-colors-off"><path d="M20.65 20.87l-2.35-2.35-6.3-6.29-3.56-3.57-1.42-1.41-2.75-2.75-1.27 1.27 2.78 2.78c-2.55 3.14-2.36 7.76.56 10.69 1.56 1.56 3.61 2.34 5.66 2.34 1.79 0 3.57-.59 5.03-1.78l2.7 2.7 1.27-1.27-.35-.36zm-8.65-1.28c-1.6 0-3.11-.62-4.24-1.76-1.14-1.14-1.76-2.64-1.76-4.24 0-1.32.43-2.57 1.21-3.6l4.79 4.78v4.82zm0-14.49v4.58l7.25 7.26c1.37-2.96.84-6.57-1.6-9.01l-5.65-5.66-3.7 3.7 1.41 1.41 2.29-2.28z"></path></g>
+<g id="invert-colors-on"><path d="M17.66 7.93l-5.66-5.66-5.66 5.66c-3.12 3.12-3.12 8.19 0 11.31 1.56 1.56 3.61 2.34 5.66 2.34 2.05 0 4.1-.78 5.66-2.34 3.12-3.12 3.12-8.19 0-11.31zm-5.66 11.66c-1.6 0-3.11-.62-4.24-1.76-1.14-1.14-1.76-2.64-1.76-4.24s.62-3.11 1.76-4.24l4.24-4.25v14.49z"></path></g>
+<g id="live-help"><path d="M19 2h-14c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h4l3 3 3-3h4c1.1 0 2-.9 2-2v-14c0-1.1-.9-2-2-2zm-6 16h-2v-2h2v2zm2.07-7.75l-.9.92c-.72.73-1.17 1.33-1.17 2.83h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"></path></g>
+<g id="location-off"><path d="M12 6.5c1.38 0 2.5 1.12 2.5 2.5 0 .74-.33 1.39-.83 1.85l3.63 3.63c.98-1.86 1.7-3.8 1.7-5.48 0-3.87-3.13-7-7-7-1.98 0-3.76.83-5.04 2.15l3.19 3.19c.46-.52 1.11-.84 1.85-.84zm4.37 9.6l-4.63-4.63-.11-.11-8.36-8.36-1.27 1.27 3.18 3.18c-.11.5-.18 1.02-.18 1.55 0 5.25 7 13 7 13s1.67-1.85 3.38-4.35l3.35 3.35 1.27-1.27-3.63-3.63z"></path></g>
+<g id="location-on"><path d="M12 2c-3.87 0-7 3.13-7 7 0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></g>
+<g id="message"><path d="M20 2h-16c-1.1 0-1.99.9-1.99 2l-.01 18 4-4h14c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm-2 12h-12v-2h12v2zm0-3h-12v-2h12v2zm0-3h-12v-2h12v2z"></path></g>
+<g id="messenger"><path d="M20 2h-16c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2z"></path></g>
+<g id="no-sim"><path d="M18.99 5c0-1.1-.89-2-1.99-2h-7l-2.34 2.34 11.34 11.34-.01-11.68zm-15.34-1.12l-1.27 1.27 2.62 2.62v11.23c0 1.1.9 2 2 2h10.01c.35 0 .67-.1.96-.26l1.88 1.88 1.27-1.27-17.47-17.47z"></path></g>
+<g id="phone"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1v3.49c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"></path></g>
+<g id="portable-wifi-off"><path d="M17.56 14.24c.28-.69.44-1.45.44-2.24 0-3.31-2.69-6-6-6-.79 0-1.55.16-2.24.44l1.62 1.62c.2-.03.41-.06.62-.06 2.21 0 4 1.79 4 4 0 .21-.02.42-.05.63l1.61 1.61zm-5.56-10.24c4.42 0 8 3.58 8 8 0 1.35-.35 2.62-.95 3.74l1.47 1.47c.94-1.52 1.48-3.3 1.48-5.21 0-5.52-4.48-10-10-10-1.91 0-3.69.55-5.21 1.47l1.46 1.46c1.12-.59 2.4-.93 3.75-.93zm-8.73-1.5l-1.27 1.27 2.1 2.1c-1.31 1.7-2.1 3.82-2.1 6.13 0 3.7 2.01 6.92 4.99 8.65l1-1.73c-2.38-1.39-3.99-3.96-3.99-6.92 0-1.76.57-3.38 1.53-4.69l1.43 1.44c-.6.93-.96 2.05-.96 3.25 0 2.22 1.21 4.15 3 5.19l1-1.74c-1.19-.7-2-1.97-2-3.45 0-.65.17-1.25.44-1.79l1.58 1.58-.02.21c0 1.1.9 2 2 2l.21-.02.01.01 7.51 7.51 1.27-1.27-16.73-16.73-1-1z"></path></g>
+<g id="quick-contacts-dialer"><path d="M22 3h-20c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2l.01-14c0-1.1-.9-2-2-2zm-14 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12h-12v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm3.85-4h1.64l1.51 2-1.99 1.99c-1.31-.98-2.28-2.38-2.73-3.99-.18-.64-.28-1.31-.28-2s.1-1.36.28-2c.45-1.62 1.42-3.01 2.73-3.99l1.99 1.99-1.51 2h-1.64c-.22.63-.35 1.3-.35 2s.13 1.37.35 2z"></path></g>
+<g id="quick-contacts-mail"><path d="M21 8v-1l-3 2-3-2v1l3 2 3-2zm1-5h-20c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h20c1.1 0 1.99-.9 1.99-2l.01-14c0-1.1-.9-2-2-2zm-14 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm6 12h-12v-1c0-2 4-3.1 6-3.1s6 1.1 6 3.1v1zm8-6h-8v-6h8v6z"></path></g>
+<g id="ring-volume"><path d="M23.71 16.67c-3.05-2.89-7.17-4.67-11.71-4.67-4.54 0-8.66 1.78-11.71 4.67-.18.18-.29.43-.29.71 0 .28.11.53.29.71l2.48 2.48c.18.18.43.29.71.29.27 0 .52-.11.7-.28.79-.74 1.69-1.36 2.66-1.85.33-.16.56-.5.56-.9v-3.1c1.45-.48 3-.73 4.6-.73s3.15.25 4.6.72v3.1c0 .39.23.74.56.9.98.49 1.87 1.12 2.66 1.85.18.18.43.28.7.28.28 0 .53-.11.71-.29l2.48-2.48c.18-.18.29-.43.29-.71 0-.27-.11-.52-.29-.7zm-2.55-10.41l-1.41-1.41-3.56 3.55 1.41 1.41s3.45-3.52 3.56-3.55zm-8.16-4.26h-2v5h2v-5zm-6.6 7.81l1.41-1.41-3.55-3.56-1.42 1.42c.11.03 3.56 3.55 3.56 3.55z"></path></g>
+<g id="stay-current-landscape"><path d="M1.01 7l-.01 10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2h-18c-1.1 0-1.99.9-1.99 2zm17.99 0v10h-14v-10h14z"></path></g>
+<g id="stay-current-portrait"><path d="M17 1.01l-10-.01c-1.1 0-1.99.9-1.99 2v18c0 1.1.89 2 1.99 2h10c1.1 0 2-.9 2-2v-18c0-1.1-.9-1.99-2-1.99zm0 17.99h-10v-14h10v14z"></path></g>
+<g id="stay-primary-landscape"><path d="M1.01 7l-.01 10c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2v-10c0-1.1-.9-2-2-2h-18c-1.1 0-1.99.9-1.99 2zm17.99 0v10h-14v-10h14z"></path></g>
+<g id="stay-primary-portrait"><path d="M17 1.01l-10-.01c-1.1 0-1.99.9-1.99 2v18c0 1.1.89 2 1.99 2h10c1.1 0 2-.9 2-2v-18c0-1.1-.9-1.99-2-1.99zm0 17.99h-10v-14h10v14z"></path></g>
+<g id="swap-calls"><path d="M18 4l-4 4h3v7c0 1.1-.9 2-2 2s-2-.9-2-2v-7c0-2.21-1.79-4-4-4s-4 1.79-4 4v7h-3l4 4 4-4h-3v-7c0-1.1.9-2 2-2s2 .9 2 2v7c0 2.21 1.79 4 4 4s4-1.79 4-4v-7h3l-4-4z"></path></g>
+<g id="textsms"><path d="M20 2h-16c-1.1 0-1.99.9-1.99 2l-.01 18 4-4h14c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2zm-11 9h-2v-2h2v2zm4 0h-2v-2h2v2zm4 0h-2v-2h2v2z"></path></g>
+<g id="voicemail"><path d="M18.5 6c-3.04 0-5.5 2.46-5.5 5.5 0 1.33.47 2.55 1.26 3.5h-4.52c.79-.95 1.26-2.17 1.26-3.5 0-3.04-2.46-5.5-5.5-5.5s-5.5 2.46-5.5 5.5 2.46 5.5 5.5 5.5h13c3.04 0 5.5-2.46 5.5-5.5s-2.46-5.5-5.5-5.5zm-13 9c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5zm13 0c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"></path></g>
+<g id="vpn-key"><path d="M12.65 10c-.82-2.33-3.04-4-5.65-4-3.31 0-6 2.69-6 6s2.69 6 6 6c2.61 0 4.83-1.67 5.65-4h4.35v4h4v-4h2v-4h-10.35zm-5.65 4c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z"></path></g>
+</defs></svg>
+</core-iconset-svg>
+</div><div hidden><!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
 <!--
 
 `paper-menu-button` works together with a button and a `paper-dropdown` to
@@ -2536,6 +2594,756 @@ Example:
 </template>
 </polymer-element>
 </div><div hidden>undefined</div><div hidden><!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!--
+
+The `core-style` element helps manage styling inside other elements and can 
+be used to make themes. The `core-style` element can be either a producer 
+or consumer of styling. If it has its `id` property set, it's a producer. 
+Elements that are producers should include css styling as their text content.
+If a `core-style` has its `ref` property set, it's a consumer. A `core-style`
+typically sets its `ref` property to the value of the `id` property of the
+`core-style` it wants to use. This allows a single producer to be used in 
+multiple places, for example, in many different elements.
+
+It's common to place `core-style` producer elements inside HTMLImports.
+Remote stylesheets should be included this way, the &#64;import css mechanism is
+not currently supported.
+
+Here's a basic example:
+
+    <polymer-element name="x-test" noscript>
+      <template>
+        <core-style ref="x-test"></core-style>
+        <content></content>
+      </template>
+    </polymer-element>
+
+The `x-test` element above will be styled by any `core-style` elements that have
+`id` set to `x-test`. These `core-style` producers are separate from the element
+definition, allowing a user of the element to style it independent of the author's 
+styling. For example:
+
+    <core-style id="x-test">
+      :host {
+        backgound-color: steelblue;
+      }
+    </core-style>
+
+The content of the `x-test` `core-style` producer gets included inside the
+shadowRoot of the `x-test` element. If the content of the `x-test` producer
+`core-style` changes, all consumers of it are automatically kept in sync. This
+allows updating styling on the fly.
+
+The `core-style` element also supports bindings, in which case the producer
+`core-style` element is the model. Here's an example:
+
+    <core-style id="x-test">
+      :host {
+        background-color: {{myColor}};
+      }
+    </core-style>
+    <script>
+      document._currentScript.ownerDocument.getElementById('x-test').myColor = 'orange';
+    </script>
+
+Finally, to facilitate sharing data between `core-style` elements, all
+`core-style` elements have a `g` property which is set to the global 
+`CoreStyle.g`. Here's an example:
+
+    <core-style id="x-test">
+      :host {
+        background-color: {{g.myColor}};
+      }
+    </core-style>
+    <script>
+      CoreStyle.g.myColor = 'tomato';
+    </script>
+
+Finally, one `core-style` can be nested inside another. The `core-style`
+element has a `list` property which is a map of all the `core-style` producers.
+A `core-style` producer's content is available via its `cssText` property. 
+Putting this together:
+
+    <core-style id="common">
+      :host {
+        font-family: sans-serif;
+      }
+    </core-style>
+
+    <core-style id="x-test">
+      {{list.common.cssText}}
+
+      :host {
+        background-color: {{g.myColor}};
+      }
+    </core-style>
+
+
+@group Polymer Core Elements
+@element core-style
+@homepage github.io
+-->
+
+
+
+<polymer-element name="core-style" hidden assetpath="../bower_components/core-style/">
+<script>(function(){window.CoreStyle=window.CoreStyle||{g:{},list:{},refMap:{}};Polymer("core-style",{publish:{ref:""},g:CoreStyle.g,refMap:CoreStyle.refMap,list:CoreStyle.list,ready:function(){if(this.id){this.provide()}else{this.registerRef(this.ref);if(!window.ShadowDOMPolyfill){this.require()}}},attached:function(){if(!this.id&&window.ShadowDOMPolyfill){this.require()}},provide:function(){this.register();if(this.textContent){this._completeProvide()}else{this.async(this._completeProvide)}},register:function(){var i=this.list[this.id];if(i){if(!Array.isArray(i)){this.list[this.id]=[i]}this.list[this.id].push(this)}else{this.list[this.id]=this}},_completeProvide:function(){this.createShadowRoot();this.domObserver=new MutationObserver(this.domModified.bind(this)).observe(this.shadowRoot,{subtree:true,characterData:true,childList:true});this.provideContent()},provideContent:function(){this.ensureTemplate();this.shadowRoot.textContent="";this.shadowRoot.appendChild(this.instanceTemplate(this.template));this.cssText=this.shadowRoot.textContent},ensureTemplate:function(){if(!this.template){this.template=this.querySelector("template:not([repeat]):not([bind])");if(!this.template){this.template=document.createElement("template");var n=this.firstChild;while(n){this.template.content.appendChild(n.cloneNode(true));n=n.nextSibling}}}},domModified:function(){this.cssText=this.shadowRoot.textContent;this.notify()},notify:function(){var s$=this.refMap[this.id];if(s$){for(var i=0,s;s=s$[i];i++){s.require()}}},registerRef:function(ref){this.refMap[this.ref]=this.refMap[this.ref]||[];this.refMap[this.ref].push(this)},applyRef:function(ref){this.ref=ref;this.registerRef(this.ref);this.require()},require:function(){var cssText=this.cssTextForRef(this.ref);if(cssText){this.ensureStyleElement();if(this.styleElement._cssText===cssText){return}this.styleElement._cssText=cssText;if(window.ShadowDOMPolyfill){this.styleElement.textContent=cssText;cssText=WebComponents.ShadowCSS.shimStyle(this.styleElement,this.getScopeSelector())}this.styleElement.textContent=cssText}},cssTextForRef:function(ref){var s$=this.byId(ref);var cssText="";if(s$){if(Array.isArray(s$)){var p=[];for(var i=0,l=s$.length,s;i<l&&(s=s$[i]);i++){p.push(s.cssText)}cssText=p.join("\n\n")}else{cssText=s$.cssText}}if(s$&&!cssText){console.warn("No styles provided for ref:",ref)}return cssText},byId:function(id){return this.list[id]},ensureStyleElement:function(){if(!this.styleElement){this.styleElement=window.ShadowDOMPolyfill?this.makeShimStyle():this.makeRootStyle()}if(!this.styleElement){console.warn(this.localName,"could not setup style.")}},makeRootStyle:function(){var style=document.createElement("style");this.appendChild(style);return style},makeShimStyle:function(){var host=this.findHost(this);if(host){var name=host.localName;var style=document.querySelector("style["+name+"="+this.ref+"]");if(!style){style=document.createElement("style");style.setAttribute(name,this.ref);document.head.appendChild(style)}return style}},getScopeSelector:function(){if(!this._scopeSelector){var selector="",host=this.findHost(this);if(host){var typeExtension=host.hasAttribute("is");var name=typeExtension?host.getAttribute("is"):host.localName;selector=WebComponents.ShadowCSS.makeScopeSelector(name,typeExtension)}this._scopeSelector=selector}return this._scopeSelector},findHost:function(node){while(node.parentNode){node=node.parentNode}return node.host||wrap(document.documentElement)},cycle:function(rgb,amount){if(rgb.match("#")){var o=this.hexToRgb(rgb);if(!o){return rgb}rgb="rgb("+o.r+","+o.b+","+o.g+")"}function cycleChannel(v){return Math.abs((Number(v)-amount)%255)}return rgb.replace(/rgb\(([^,]*),([^,]*),([^,]*)\)/,function(m,a,b,c){return"rgb("+cycleChannel(a)+","+cycleChannel(b)+", "+cycleChannel(c)+")"})},hexToRgb:function(hex){var result=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);return result?{r:parseInt(result[1],16),g:parseInt(result[2],16),b:parseInt(result[3],16)}:null}})})();</script>
+</polymer-element>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+`<core-transition>` is an abstraction of an animation. It is used to implement pluggable
+transitions, for example in `<core-overlay>`. You can extend this class to create a custom
+animation, instantiate it, and import it where you need the animation.
+
+All instances of `<core-transition>` are stored in a single database with `type=transition`.
+For more about the database, please see the documentation for `<core-meta>`.
+
+Each instance of `<core-transition>` objects are shared across all the clients, so you should
+not store state information specific to the animated element in the transition. Rather, store
+it on the element.
+
+Example:
+
+my-transition.html:
+
+    <polymer-element name="my-transition" extends="core-transition">
+        <script>
+            go: function(node) {
+                node.style.transition = 'opacity 1s ease-out';
+                node.style.opacity = 0;
+            }
+        </script>
+    </polymer-element>
+
+    <my-transition id="my-fade-out"></my-transition>
+
+my-transition-demo.html:
+
+    <link href="components/core-meta/core-meta.html" rel="import">
+    <link href="my-transition.html" rel="import">
+
+    <div id="animate-me"></div>
+
+    <script>
+        // Get the core-transition
+        var meta = document.createElement('core-meta');
+        meta.type = 'transition';
+        var transition = meta.byId('my-fade-out');
+
+        // Run the animation
+        var animated = document.getElementById('animate-me');
+        transition.go(animated);
+    </script>
+
+@group Polymer Core Elements
+@element core-transition
+@extends core-meta
+@status beta
+@homepage github.io
+-->
+<!--
+Fired when the animation finishes.
+
+@event core-transitionend
+@param {Object} detail
+@param {Object} detail.node The animated node
+-->
+
+
+
+<polymer-element name="core-transition" extends="core-meta" assetpath="../bower_components/core-transition/">
+  
+  <script>Polymer("core-transition",{type:"transition",go:function(node,state){this.complete(node)},setup:function(node){},teardown:function(node){},complete:function(node){this.fire("core-transitionend",null,node)},listenOnce:function(node,event,fn,args){var self=this;var listener=function(){fn.apply(self,args);node.removeEventListener(event,listener,false)};node.addEventListener(event,listener,false)}});</script>
+</polymer-element>
+
+
+<!--
+
+`core-transition-pages` represents a page transition, which may include CSS and/or
+script. It will look for a `core-style` element with the same `id` to install in the
+scope of the `core-animated-pages` that's using the transition.
+
+Example:
+
+    <core-style id="fooTransition">
+        // some CSS here
+    </core-style>
+    <core-transition-pages id="fooTransition"></core-transition-pages>
+
+There are three stages to a page transition:
+
+1. `prepare`: Called to set up the incoming and outgoing pages to the "before" state,
+  e.g. setting the incoming page to `opacity: 0` for `cross-fade` or find and
+  measure hero elements for `hero-transition`.
+
+2. `go`: Called to run the transition. For CSS-based transitions, this generally
+  applies a CSS `transition` property.
+
+3. `complete`: Called when the elements are finished transitioning.
+
+See the individual transition documentation for specific details.
+
+@element core-transition-pages
+@extends core-transition
+@status beta
+@homepage github.io
+-->
+<!--
+Fired when the transition completes.
+
+@event core-transitionend
+-->
+<polymer-element name="core-transition-pages" extends="core-transition" assetpath="../bower_components/core-animated-pages/transitions/">
+<script>(function(){var transitions=CoreStyle.g.transitions=CoreStyle.g.transitions||{};transitions.duration="500ms";transitions.heroDelay="50ms";transitions.scaleDelay="500ms";transitions.cascadeFadeDuration="250ms";Polymer("core-transition-pages",{publish:{scopeClass:"",activeClass:"",transitionProperty:""},completed:false,prepare:function(scope,options){this.boundCompleteFn=this.complete.bind(this,scope);if(this.scopeClass){scope.classList.add(this.scopeClass)}},go:function(scope,options){this.completed=false;if(this.activeClass){scope.classList.add(this.activeClass)}scope.addEventListener("transitionend",this.boundCompleteFn,false)},setup:function(scope){if(!scope._pageTransitionStyles){scope._pageTransitionStyles={}}var name=this.calcStyleName();if(!scope._pageTransitionStyles[name]){this.installStyleInScope(scope,name);scope._pageTransitionStyles[name]=true}},calcStyleName:function(){return this.id||this.localName},installStyleInScope:function(scope,id){if(!scope.shadowRoot){scope.createShadowRoot().innerHTML="<content></content>"}var root=scope.shadowRoot;var scopeStyle=document.createElement("core-style");root.insertBefore(scopeStyle,root.firstChild);scopeStyle.applyRef(id)},complete:function(scope,e){if(e.propertyName!=="box-shadow"&&(!this.transitionProperty||e.propertyName.indexOf(this.transitionProperty)!==-1)){this.completed=true;this.fire("core-transitionend",this,scope)}},ensureComplete:function(scope){scope.removeEventListener("transitionend",this.boundCompleteFn,false);if(this.scopeClass){scope.classList.remove(this.scopeClass)}if(this.activeClass){scope.classList.remove(this.activeClass)}}})})();</script>
+</polymer-element>
+
+
+<core-style id="hero-transition">
+  /* Hide heroes that are not currently transitioning */
+  polyfill-next-selector { content: ':host > [animate]:not(.core-selected) [hero]'; }
+  ::content > [animate]:not(.core-selected) /deep/ [hero] {
+    opacity: 0;
+  }
+
+  polyfill-next-selector { content: ':host > .core-selected[animate] [hero]'; }
+  ::content > .core-selected[animate] /deep/ [hero] {
+    opacity: 1;
+    z-index: 10000;
+  }
+
+  polyfill-next-selector { content: ':host > * [hero-p]'; }
+  ::content > * /deep/ [hero-p] {
+    -webkit-transition: box-shadow 100ms ease-out;
+    transition: box-shadow 100ms ease-out;
+  }
+
+  polyfill-next-selector { content: ':host > [animate] [hero-p]'; }
+  ::content > [animate] /deep/ [hero-p] {
+    box-shadow: none !important;
+  }
+</core-style>
+
+
+<!--
+
+`hero-transition` transforms two elements in different pages such that they appear
+to be shared across the pages.
+
+Example:
+
+    <core-animated-pages transition="hero-transition">
+      <section layout horizontal>
+        <div id="div1" flex></div>
+        <div id="div2" flex hero-id="shared" hero></div>
+      </section>
+      <section>
+      <section layout horizontal>
+        <div id="div3" flex hero-id="shared" hero></div>
+        <div id="div4" flex></div>
+      </section>
+      </section>
+    </core-animated-pages>
+
+In the above example, the elements `#div2` and `#div3` shares the same `hero-id`
+attribute and a single element appears to translate and scale smoothly between
+the two positions during a page transition.
+
+Both elements from the source and destination pages must share the same `hero-id`
+and must both contain the `hero` attribute to trigger the transition. The separate
+`hero` attribute allows you to use binding to configure the transition:
+
+Example:
+
+    <core-animated-pages transition="hero-transition">
+      <section layout horizontal>
+        <div id="div1" flex hero-id="shared" hero?="{{selected == 0}}"></div>
+        <div id="div2" flex hero-id="shared" hero?="{{selected == 1}}"></div>
+      </section>
+      <section>
+      <section layout horizontal>
+        <div id="div3" flex hero-id="shared" hero></div>
+      </section>
+      </section>
+    </core-animated-pages>
+
+In the above example, either `#div1` or `#div2` scales to `#div3` during a page transition,
+depending on the value of `selected`.
+
+Because it is common to share elements with different `border-radius` values, by default
+this transition will also animate the `border-radius` property.
+
+You can configure the duration of the hero transition with the global variable
+`CoreStyle.g.transitions.heroDuration`.
+
+@class hero-transition
+@extends core-transition-pages
+@status beta
+@homepage github.io
+-->
+<polymer-element name="hero-transition" extends="core-transition-pages" assetpath="../bower_components/core-animated-pages/transitions/">
+<script>(function(){var webkitStyles="-webkit-transition"in document.documentElement.style;var TRANSITION_CSSNAME=webkitStyles?"-webkit-transition":"transition";var TRANSFORM_CSSNAME=webkitStyles?"-webkit-transform":"transform";var TRANSITION_NAME=webkitStyles?"webkitTransition":"transition";var TRANSFORM_NAME=webkitStyles?"webkitTransform":"transform";var hasShadowDOMPolyfill=window.ShadowDOMPolyfill;Polymer("hero-transition",{go:function(scope,options){var props=["border-radius","width","height",TRANSFORM_CSSNAME];var duration=options&&options.duration||(CoreStyle.g.transitions.heroDuration||CoreStyle.g.transitions.duration);scope._heroes.forEach(function(h){var d=h.h0.hasAttribute("hero-delayed")?CoreStyle.g.transitions.heroDelay:"";var wt=[];props.forEach(function(p){wt.push(p+" "+duration+" "+options.easing+" "+d)});h.h1.style[TRANSITION_NAME]=wt.join(", ");h.h1.style.borderRadius=h.r1;h.h1.style[TRANSFORM_NAME]=""});this.super(arguments);if(!scope._heroes.length){this.completed=true}},prepare:function(scope,options){this.super(arguments);var src=options.src,dst=options.dst;if(scope._heroes&&scope._heroes.length){this.ensureComplete(scope)}else{scope._heroes=[]}var ss="[hero]";var h$=this.findAllInShadows(src,ss);if(src.selectedItem){hs$=this.findAllInShadows(src.selectedItem,ss);hsa$=[];Array.prototype.forEach.call(hs$,function(hs){if(h$.indexOf(hs)===-1){hsa$.push(hs)}});h$=h$.concat(hsa$)}for(var i=0,h0;h0=h$[i];i++){var v=h0.getAttribute("hero-id");var ds='[hero][hero-id="'+v+'"]';var h1=this.findInShadows(dst,ds);if(!h1&&dst.selectedItem){h1=this.findInShadows(dst.selectedItem,ds)}if(v&&h1){var c0=getComputedStyle(h0);var c1=getComputedStyle(h1);var h={h0:h0,b0:h0.getBoundingClientRect(),r0:c0.borderRadius,h1:h1,b1:h1.getBoundingClientRect(),r1:c1.borderRadius};var dl=h.b0.left-h.b1.left;var dt=h.b0.top-h.b1.top;var sw=h.b0.width/h.b1.width;var sh=h.b0.height/h.b1.height;if(h.r0!==h.r1){h.h1.style.borderRadius=h.r0}h.h1.style[TRANSFORM_NAME]="translate("+dl+"px,"+dt+"px)"+" scale("+sw+","+sh+")";h.h1.style[TRANSFORM_NAME+"Origin"]="0 0";scope._heroes.push(h)}}},findInShadows:function(node,selector){return node.querySelector(selector)||(hasShadowDOMPolyfill?queryAllShadows(node,selector):node.querySelector("::shadow "+selector))},findAllInShadows:function(node,selector){if(hasShadowDOMPolyfill){var nodes=node.querySelectorAll(selector).array();var shadowNodes=queryAllShadows(node,selector,true);return nodes.concat(shadowNodes)}else{return node.querySelectorAll(selector).array().concat(node.shadowRoot?node.shadowRoot.querySelectorAll(selector).array():[])}},ensureComplete:function(scope){this.super(arguments);if(scope._heroes){scope._heroes.forEach(function(h){h.h1.style[TRANSITION_NAME]="";h.h1.style[TRANSFORM_NAME]=""});scope._heroes=[]}},complete:function(scope,e){var done=false;scope._heroes.forEach(function(h){if(h.h1===e.path[0]){done=true}});if(done){this.super(arguments)}}});function queryShadow(node,selector){var m,el=node.firstElementChild;var shadows,sr,i;shadows=[];sr=node.shadowRoot;while(sr){shadows.push(sr);sr=sr.olderShadowRoot}for(i=shadows.length-1;i>=0;i--){m=shadows[i].querySelector(selector);if(m){return m}}while(el){m=queryShadow(el,selector);if(m){return m}el=el.nextElementSibling}return null}function _queryAllShadows(node,selector,results){var el=node.firstElementChild;var temp,sr,shadows,i,j;shadows=[];sr=node.shadowRoot;while(sr){shadows.push(sr);sr=sr.olderShadowRoot}for(i=shadows.length-1;i>=0;i--){temp=shadows[i].querySelectorAll(selector);for(j=0;j<temp.length;j++){results.push(temp[j])}}while(el){_queryAllShadows(el,selector,results);el=el.nextElementSibling}return results}queryAllShadows=function(node,selector,all){if(all){return _queryAllShadows(node,selector,[])}else{return queryShadow(node,selector)}}})();</script>
+</polymer-element>
+
+<hero-transition id="hero-transition"></hero-transition>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+
+<core-style id="cross-fade">
+  polyfill-next-selector { content: ':host > * [cross-fade]'; }
+  ::content > * /deep/ [cross-fade] {
+    -webkit-transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} cubic-bezier(0.4, 0, 0.2, 1);
+    transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  polyfill-next-selector { content: ':host > * [cross-fade][bg]'; }
+  ::content > * /deep/ [cross-fade][bg] {
+    -webkit-transition: background-color {{g.transitions.xfadeDuration || g.transitions.duration}} cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color {{g.transitions.xfadeDuration || g.transitions.duration}} cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  polyfill-next-selector { content: ':host > * [cross-fade][hero-p]'; }
+  ::content > * /deep/ [cross-fade][hero-p] {
+    -webkit-transition: background-color {{g.transitions.xfadeDuration || g.transitions.duration}} cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color {{g.transitions.xfadeDuration || g.transitions.duration}} cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  polyfill-next-selector { content: ':host > .core-selected [cross-fade]'; }
+  ::content > .core-selected /deep/ [cross-fade] {
+    opacity: 1;
+  }
+
+  polyfill-next-selector { content: ':host > [animate]:not(.core-selected) [cross-fade]:not([hero-p]):not([bg])'; }
+  ::content > [animate]:not(.core-selected) /deep/ [cross-fade]:not([hero-p]):not([bg]) {
+    opacity: 0;
+  }
+
+  polyfill-next-selector { content: ':host > [animate]:not(.core-selected) [cross-fade][bg]'; }
+  ::content > [animate]:not(.core-selected) /deep/ [cross-fade][bg] {
+    background-color: rgba(0, 0, 0, 0);
+  }
+
+  polyfill-next-selector { content: ':host > [animate]:not(.core-selected) [cross-fade][hero-p]'; }
+  ::content > [animate]:not(.core-selected) /deep/ [cross-fade][hero-p] {
+    background-color: rgba(0, 0, 0, 0);
+  }
+</core-style>
+
+<core-style id="cross-fade-delayed">
+  polyfill-next-selector { content: ':host > * [cross-fade-delayed]'; }
+  ::content > * /deep/ [cross-fade-delayed] {
+    -webkit-transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out;
+    transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out;
+  }
+
+  polyfill-next-selector { content: ':host > .core-selected [cross-fade-delayed]'; }
+  ::content > .core-selected /deep/ [cross-fade-delayed] {
+    -webkit-transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out {{g.transitions.xfadeDelay || g.transitions.xfadeDuration || g.transitions.duration}};
+    transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out {{g.transitions.xfadeDelay || g.transitions.xfadeDuration || g.transitions.duration}};
+  }
+
+  polyfill-next-selector { content: ':host > [animate]:not(.core-selected) [cross-fade-delayed]'; }
+  ::content > [animate]:not(.core-selected) /deep/ [cross-fade-delayed] {
+    opacity: 0;
+  }
+
+  polyfill-next-selector { content: ':host > .core-selected [cross-fade-delayed]'; }
+  ::content > .core-selected /deep/ [cross-fade-delayed] {
+    opacity: 1;
+  }
+
+</core-style>
+
+<core-style id="cross-fade-all">
+  /* cross-fade-all: cross fade everything except for heroes and their parents */
+  polyfill-next-selector { content: ':host(.cross-fade-all) > * *:not([hero]):not([hero-p]):not([cross-fade])'; }
+  :host(.cross-fade-all) ::content > * /deep/ *:not([hero]):not([hero-p]):not([cross-fade]) {
+    -webkit-transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out;
+    transition: opacity {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out;
+  }
+
+  polyfill-next-selector { content: ':host(.cross-fade-all) > [animate]:not(.core-selected) *:not([hero]):not([hero-p]):not([cross-fade])'; }
+  :host(.cross-fade-all) ::content > [animate]:not(.core-selected) /deep/ *:not([hero]):not([hero-p]):not([cross-fade]) {
+    opacity: 0;
+  }
+
+  polyfill-next-selector { content: ':host(.cross-fade-all) > .core-selected *:not([hero])'; }
+  .host(.cross-fade-all) ::content > .core-selected /deep/ * {
+    opacity: 1;
+  }
+
+  /* Only background-color is allowed for the hero's parents, no opacity transitions */
+  polyfill-next-selector { content: ':host(.cross-fade-all) > * [hero-p]'; }
+  :host(.cross-fade-all) ::content > * /deep/ [hero-p] {
+    -webkit-transition: background-color {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out;
+    transition: background-color {{g.transitions.xfadeDuration || g.transitions.duration}} ease-out;
+    opacity: 1;
+  }
+
+  polyfill-next-selector { content: ':host(.cross-fade-all) > [animate]:not(.core-selected) [hero-p]'; }
+  :host(.cross-fade-all) ::content > [animate]:not(.core-selected) /deep/ [hero-p] {
+    background-color: rgba(0, 0, 0, 0);
+  }
+</core-style>
+
+<!--
+
+`cross-fade` fades out elements in the outgoing page and fades in elements in the
+incoming page during a page transition. You can configure the duration of the
+transition with the global variable `CoreStyle.g.transitions.xfadeDuration`.
+
+Example:
+
+    <core-animated-pages transition="cross-fade">
+      <section>
+        <div id="div1" cross-fade></div>
+      </section>
+      <section>
+        <div id="div2" cross-fade bg>
+          <div id="div3" cross-fade></div>
+          <div id="div4"></div>
+        </div>
+      </section>
+    </core-animated-pages>
+
+In the above example, `#div1` and `#div3` has the `cross-fade` attribute. `#div1`
+will fade out and `#div3` will fade in with opacity transitions when the page switches
+from 0 to 1. Sometimes, you may want to only fade the background color of an element
+but not its children, and you can use the `bg` attribute along with the `#div1`
+attribute as in `#div2`.
+
+@class cross-fade
+@extends core-transition-pages
+@status beta
+@homepage github.io
+
+-->
+
+<!--
+
+`cross-fade-delayed` performs a cross-fade after some delay, either specified in
+the global variable `CoreStyle.g.transitions.xfadeDelay` or the duration of the
+transition.
+
+Example:
+
+    <core-animated-pages transition="hero-transition cross-fade-delayed">
+      <section>
+        <div id="div1" hero-id hero></div>
+      </section>
+      <section>
+        <div id="div2" hero-id hero>
+          <div id="div3" cross-fade-delayed></div>
+        </div>
+      </section>
+    </core-animated-pages>
+
+In the above example, `#div3` fades in after the hero transition from `#div1` to
+`#div2` completes.
+
+@class cross-fade-delayed
+@extends core-transition-pages
+@status beta
+@homepage github.io
+
+-->
+
+<core-transition-pages id="cross-fade"></core-transition-pages>
+<core-transition-pages id="cross-fade-delayed"></core-transition-pages>
+<core-transition-pages id="cross-fade-all" scopeclass="cross-fade-all"></core-transition-pages>
+
+
+<!--
+
+`core-animated-pages` selects one of its children "pages" to show and runs a transition
+when switching between them. The transitions are designed to be pluggable, and can
+accept any object that is an instance of a `core-transition-pages`. Transitions to run
+are specified in the `transitions` attribute as a space-delimited string of `id`s of
+transition elements. Several transitions are available with `core-animated-pages` by
+default, including `hero-transition`, `cross-fade`, and `tile-cascade`.
+
+Example:
+
+    <style>
+      #hero1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+      }
+      #hero2 {
+        position: absolute;
+        top: 200px;
+        left: 300px;
+        width: 300px;
+        height: 300px;
+        background-color: orange;
+      }
+      #bottom1, #bottom2 {
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        height: 50px;
+      }
+      #bottom1 {
+        background-color: blue;
+      }
+      #bottom2 {
+        background-color: green;
+      }
+    </style>
+    // hero-transition and cross-fade are declared elsewhere
+    <core-animated-pages transitions="hero-transition cross-fade">
+      <section id="page1">
+        <div id="hero1" hero-id="hero" hero></div>
+        <div id="bottom1" cross-fade></div>
+      </section>
+      <section id="page2">
+        <div id="hero2" hero-id="hero" hero></div>
+        <div id="bottom2" cross-fade></div>
+      </section>
+    </core-animated-pages>
+
+In the above example, two transitions (`hero-transition` and `cross-fade`) are run when switching
+between `page1` and `page2`. `hero-transition` transforms elements with the same `hero-id` such
+that they appear to be shared across different pages. `cross-fade` fades out the elements marked
+`cross-fade` in the outgoing page, and fades in those in the incoming page. See the individual
+transition's documentation for specific details.
+
+Finding elements to transition
+------------------------------
+
+In general, a transition is applied to elements marked with a certain attribute. For example,
+`hero-transition` applies the transition on elements with the `hero` and `hero-id` attribute.
+Among the transitions included with `core-animated-pages`, script-based transitions such as
+`hero-transition` generally look for elements up to one level of shadowRoot from the
+`core-animated-pages` element, and CSS-based transitions such as `cross-fade` look for elements
+within any shadowRoot within the `core-animated-pages` element. This means you can use 
+custom elements as pages and mark elements in their shadowRoots as heroes, or mark 
+elements in deeper shadowRoots with other transitions.
+
+Example:
+
+    <polymer-element name="x-el" noscript>
+    <template>
+      <style>
+        #hero {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: 50px;
+          height: 300px;
+          background-color: blue;
+        }
+      </style>
+      <div id="hero" hero-id="bar" hero></div>
+    </template>
+    </polymer-element>
+
+    <polymer-element name="x-page-1" noscript>
+    <template>
+      <style>
+        #hero1 {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 300px;
+          height: 300px;
+          background-color: orange;
+        }
+      </style>
+      <div id="hero1" hero-id="foo" hero></div>
+      <div id="hero2" hero-id="bar" hero></div>
+    </template>
+    </polymer-element>
+
+    <polymer-element name="x-page-2" noscript>
+    <template>
+      <style>
+        #hero1 {
+          position: absolute;
+          top: 200px;
+          left: 300px;
+          width: 300px;
+          height: 300px;
+          background-color: orange;
+        }
+        #hero2 {
+          background-color: blue;
+          height: 150px;
+          width: 400px;
+        }
+      </style>
+      // The below element is one level of shadow from the core-animated-pages and will
+      // be transitioned.
+      <div id="hero1" hero-id="foo" hero></div>
+      // The below element contains a hero inside its shadowRoot making it two levels away
+      // from the core-animated-pages, and will not be transitioned.
+      <x-el></x-el>
+    </template>
+    </polymer-element>
+
+    <core-animated-pages transitions="hero-transition">
+      <x-page-1></x-page-1>
+      <x-page-2></x-page-2>
+    </core-animated-pages>
+
+Note that the container element of the page does not participate in the transition.
+
+    // This does not work
+    <core-animated-pages transitions="cross-fade">
+      <section cross-fade></section>
+      <section cross-fade></section>
+    </core-animated-pages>
+
+    // This works
+    <core-animated-pages transitions="cross-fade">
+      <section>
+        <div cross-fade></div>
+      </section>
+      <section>
+        <div cross-fade></div>
+      </section>
+    </core-animated-pages>
+
+Dynamically setting up transitions
+----------------------------------
+
+An easy way to set up transitions dynamically is to use property binding on
+the transition attributes. 
+
+Example:
+
+    <core-animated-pages selected="{{selected}}">
+      <section id="page1">
+        <div hero-id="hero" hero></div>
+      </section>
+      <section id="page2">
+        <div id="foo" hero-id="hero" hero?="{{selected === 1 || selected === 0}}" cross-fade="{{selected === 2}}"></div>
+      </section>
+      <section id="page3">
+      </section>
+    </core-animated-pages>
+
+In the above example, the "foo" element only behaves as a hero element if transitioning between
+`#page1` and `#page2`. It gets cross-faded when transition to or from `#page3`.
+
+Nesting pages
+-------------
+
+It is possible to nest core-animated-pages elements for organization. Excessive nesting is
+not encouraged, however, since it makes setting up the transition more complex.
+
+To nest core-animated-pages, the page containing the nested core-animated-pages element should
+have a `selectedItem` property bound to the `selectedItem` property of the nested element. This
+will allow the outer core-animated-pages to know which nested page it is actually transitioning
+to.
+
+Example:
+
+    <polymer-element name="nested-page" attributes="selectedItem">
+    <template>
+      <core-animated-pages selectedItem="{{selectedItem}}">
+        ...
+      </core-animated-pages>
+    </template>
+    </polymer-element>
+
+    <core-animated-pages>
+      <section id="page1"></section>
+      <nested-page id="page2"></nested-page>
+    </core-animated-pages>
+
+@element core-animated-pages
+@extends core-selector
+@status beta
+@homepage github.io
+-->
+<!--
+Fired before a page transition occurs. Both pages involved in the transition are visible when
+this event fires. This is useful if there is something the client needs to do when a page becomes
+visible.
+
+@event core-animated-pages-transition-prepare
+-->
+<!--
+Fired when a page transition completes.
+
+@event core-animated-pages-transition-end
+-->
+<polymer-element name="core-animated-pages" extends="core-selector" notap="" attributes="transitions" assetpath="../bower_components/core-animated-pages/">
+
+<template>
+
+  <style>:host{display:block;position:relative}polyfill-next-selector{content:':host > *'}::content>*{position:absolute;top:0;right:0;bottom:0;left:0}polyfill-next-selector{content:':host > *:not(.core-selected):not([animate])'}::content>:not(.core-selected):not([animate]){display:none!important}</style>
+
+  <shadow></shadow>
+
+</template>
+
+<script>Polymer(Polymer.mixin({eventDelegates:{"core-transitionend":"transitionEnd"},transitions:"",selected:0,lastSelected:null,registerCallback:function(){this.tmeta=document.createElement("core-transition")},created:function(){this._transitions=[];this.transitioning=[]},attached:function(){this.resizerAttachedHandler()},detached:function(){this.resizerDetachedHandler()},transitionsChanged:function(){this._transitions=this.transitions.split(" ")},_transitionsChanged:function(old){if(this._transitionElements){this._transitionElements.forEach(function(t){t.teardown(this)},this)}this._transitionElements=[];this._transitions.forEach(function(transitionId){var t=this.getTransition(transitionId);if(t){this._transitionElements.push(t);t.setup(this)}},this)},getTransition:function(transitionId){return this.tmeta.byId(transitionId)},selectionSelect:function(e,detail){this.updateSelectedItem()},applyTransition:function(src,dst){if(this.animating){this.cancelAsync(this.animating);this.animating=null}Polymer.flush();if(this.transitioning.indexOf(src)===-1){this.transitioning.push(src)}if(this.transitioning.indexOf(dst)===-1){this.transitioning.push(dst)}src.setAttribute("animate","");dst.setAttribute("animate","");var options={src:src,dst:dst,easing:"cubic-bezier(0.4, 0, 0.2, 1)"};this.fire("core-animated-pages-transition-prepare");this._transitionElements.forEach(function(transition){transition.prepare(this,options)},this);src.offsetTop;this.applySelection(dst,true);this.applySelection(src,false);this._transitionElements.forEach(function(transition){transition.go(this,options)},this);if(!this._transitionElements.length){this.complete()}else{this.animating=this.async(this.complete.bind(this),null,5e3)}},complete:function(){if(this.animating){this.cancelAsync(this.animating);this.animating=null}this.transitioning.forEach(function(t){t.removeAttribute("animate")});this.transitioning=[];this._transitionElements.forEach(function(transition){transition.ensureComplete(this)},this);this.fire("core-animated-pages-transition-end")},transitionEnd:function(e){if(this.transitioning.length){var completed=true;this._transitionElements.forEach(function(transition){if(!transition.completed){completed=false}});if(completed){this.job("transitionWatch",function(){this.complete()},100)}}},selectedChanged:function(old){this.lastSelected=old;this.super(arguments)},selectedItemChanged:function(oldItem){this.super(arguments);if(!oldItem){this.applySelection(this.selectedItem,true);return}if(this.hasAttribute("no-transition")||!this._transitionElements||!this._transitionElements.length){this.applySelection(oldItem,false);this.applySelection(this.selectedItem,true);this.notifyResize();return}if(oldItem&&this.selectedItem){var self=this;Polymer.flush();Polymer.endOfMicrotask(function(){self.applyTransition(oldItem,self.selectedItem);self.notifyResize()})}},resizerShouldNotify:function(el){while(el&&el!=this){if(el==this.selectedItem){return true}el=el.parentElement||el.parentNode&&el.parentNode.host}}},Polymer.CoreResizer));</script>
+
+</polymer-element>
+</div><div hidden>undefined</div><div hidden><!--
 Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
 This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
 The complete set of authors may be found at http://polymer.github.io/AUTHORS
@@ -2740,109 +3548,6 @@ The following ARIA attributes are set automatically:
 
 </polymer-element>
 
-<!--
-Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
--->
-<!--
-
-The `core-style` element helps manage styling inside other elements and can 
-be used to make themes. The `core-style` element can be either a producer 
-or consumer of styling. If it has its `id` property set, it's a producer. 
-Elements that are producers should include css styling as their text content.
-If a `core-style` has its `ref` property set, it's a consumer. A `core-style`
-typically sets its `ref` property to the value of the `id` property of the
-`core-style` it wants to use. This allows a single producer to be used in 
-multiple places, for example, in many different elements.
-
-It's common to place `core-style` producer elements inside HTMLImports.
-Remote stylesheets should be included this way, the &#64;import css mechanism is
-not currently supported.
-
-Here's a basic example:
-
-    <polymer-element name="x-test" noscript>
-      <template>
-        <core-style ref="x-test"></core-style>
-        <content></content>
-      </template>
-    </polymer-element>
-
-The `x-test` element above will be styled by any `core-style` elements that have
-`id` set to `x-test`. These `core-style` producers are separate from the element
-definition, allowing a user of the element to style it independent of the author's 
-styling. For example:
-
-    <core-style id="x-test">
-      :host {
-        backgound-color: steelblue;
-      }
-    </core-style>
-
-The content of the `x-test` `core-style` producer gets included inside the
-shadowRoot of the `x-test` element. If the content of the `x-test` producer
-`core-style` changes, all consumers of it are automatically kept in sync. This
-allows updating styling on the fly.
-
-The `core-style` element also supports bindings, in which case the producer
-`core-style` element is the model. Here's an example:
-
-    <core-style id="x-test">
-      :host {
-        background-color: {{myColor}};
-      }
-    </core-style>
-    <script>
-      document._currentScript.ownerDocument.getElementById('x-test').myColor = 'orange';
-    </script>
-
-Finally, to facilitate sharing data between `core-style` elements, all
-`core-style` elements have a `g` property which is set to the global 
-`CoreStyle.g`. Here's an example:
-
-    <core-style id="x-test">
-      :host {
-        background-color: {{g.myColor}};
-      }
-    </core-style>
-    <script>
-      CoreStyle.g.myColor = 'tomato';
-    </script>
-
-Finally, one `core-style` can be nested inside another. The `core-style`
-element has a `list` property which is a map of all the `core-style` producers.
-A `core-style` producer's content is available via its `cssText` property. 
-Putting this together:
-
-    <core-style id="common">
-      :host {
-        font-family: sans-serif;
-      }
-    </core-style>
-
-    <core-style id="x-test">
-      {{list.common.cssText}}
-
-      :host {
-        background-color: {{g.myColor}};
-      }
-    </core-style>
-
-
-@group Polymer Core Elements
-@element core-style
-@homepage github.io
--->
-
-
-
-<polymer-element name="core-style" hidden assetpath="../bower_components/core-style/">
-<script>(function(){window.CoreStyle=window.CoreStyle||{g:{},list:{},refMap:{}};Polymer("core-style",{publish:{ref:""},g:CoreStyle.g,refMap:CoreStyle.refMap,list:CoreStyle.list,ready:function(){if(this.id){this.provide()}else{this.registerRef(this.ref);if(!window.ShadowDOMPolyfill){this.require()}}},attached:function(){if(!this.id&&window.ShadowDOMPolyfill){this.require()}},provide:function(){this.register();if(this.textContent){this._completeProvide()}else{this.async(this._completeProvide)}},register:function(){var i=this.list[this.id];if(i){if(!Array.isArray(i)){this.list[this.id]=[i]}this.list[this.id].push(this)}else{this.list[this.id]=this}},_completeProvide:function(){this.createShadowRoot();this.domObserver=new MutationObserver(this.domModified.bind(this)).observe(this.shadowRoot,{subtree:true,characterData:true,childList:true});this.provideContent()},provideContent:function(){this.ensureTemplate();this.shadowRoot.textContent="";this.shadowRoot.appendChild(this.instanceTemplate(this.template));this.cssText=this.shadowRoot.textContent},ensureTemplate:function(){if(!this.template){this.template=this.querySelector("template:not([repeat]):not([bind])");if(!this.template){this.template=document.createElement("template");var n=this.firstChild;while(n){this.template.content.appendChild(n.cloneNode(true));n=n.nextSibling}}}},domModified:function(){this.cssText=this.shadowRoot.textContent;this.notify()},notify:function(){var s$=this.refMap[this.id];if(s$){for(var i=0,s;s=s$[i];i++){s.require()}}},registerRef:function(ref){this.refMap[this.ref]=this.refMap[this.ref]||[];this.refMap[this.ref].push(this)},applyRef:function(ref){this.ref=ref;this.registerRef(this.ref);this.require()},require:function(){var cssText=this.cssTextForRef(this.ref);if(cssText){this.ensureStyleElement();if(this.styleElement._cssText===cssText){return}this.styleElement._cssText=cssText;if(window.ShadowDOMPolyfill){this.styleElement.textContent=cssText;cssText=WebComponents.ShadowCSS.shimStyle(this.styleElement,this.getScopeSelector())}this.styleElement.textContent=cssText}},cssTextForRef:function(ref){var s$=this.byId(ref);var cssText="";if(s$){if(Array.isArray(s$)){var p=[];for(var i=0,l=s$.length,s;i<l&&(s=s$[i]);i++){p.push(s.cssText)}cssText=p.join("\n\n")}else{cssText=s$.cssText}}if(s$&&!cssText){console.warn("No styles provided for ref:",ref)}return cssText},byId:function(id){return this.list[id]},ensureStyleElement:function(){if(!this.styleElement){this.styleElement=window.ShadowDOMPolyfill?this.makeShimStyle():this.makeRootStyle()}if(!this.styleElement){console.warn(this.localName,"could not setup style.")}},makeRootStyle:function(){var style=document.createElement("style");this.appendChild(style);return style},makeShimStyle:function(){var host=this.findHost(this);if(host){var name=host.localName;var style=document.querySelector("style["+name+"="+this.ref+"]");if(!style){style=document.createElement("style");style.setAttribute(name,this.ref);document.head.appendChild(style)}return style}},getScopeSelector:function(){if(!this._scopeSelector){var selector="",host=this.findHost(this);if(host){var typeExtension=host.hasAttribute("is");var name=typeExtension?host.getAttribute("is"):host.localName;selector=WebComponents.ShadowCSS.makeScopeSelector(name,typeExtension)}this._scopeSelector=selector}return this._scopeSelector},findHost:function(node){while(node.parentNode){node=node.parentNode}return node.host||wrap(document.documentElement)},cycle:function(rgb,amount){if(rgb.match("#")){var o=this.hexToRgb(rgb);if(!o){return rgb}rgb="rgb("+o.r+","+o.b+","+o.g+")"}function cycleChannel(v){return Math.abs((Number(v)-amount)%255)}return rgb.replace(/rgb\(([^,]*),([^,]*),([^,]*)\)/,function(m,a,b,c){return"rgb("+cycleChannel(a)+","+cycleChannel(b)+", "+cycleChannel(c)+")"})},hexToRgb:function(hex){var result=/^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);return result?{r:parseInt(result[1],16),g:parseInt(result[2],16),b:parseInt(result[3],16)}:null}})})();</script>
-</polymer-element>
 
 
 <core-style id="paper-input-decorator">
@@ -2945,4 +3650,953 @@ Putting this together:
 
   <script>Polymer("site-search",{publish:{label:"",floatingLabel:false,disabled:{value:false,reflect:true},canBeCondensed:false,condensed:false,site:window.location.hostname},toggleSearch:function(){if(!this.canBeCondensed)return;this.condensed=!this.condensed},onKeyUp:function(e){if(e.keyCode==13){var q=encodeURIComponent("site:"+this.site+" "+this.value);window.open("https://www.google.com/search?q="+q)}}});</script>
 
+</polymer-element></div><div hidden><!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+Material Design: <a href="http://www.google.com/design/spec/components/dialogs.html">Dialogs</a>
+
+`paper-dialog` is an overlay with a drop shadow.
+
+Example:
+
+    <paper-dialog heading="Dialog Title">
+      <p>Some content</p>
+    </paper-dialog>
+
+Styling
+-------
+
+Because a `paper-dialog` is `layered` by default, you need to use the `/deep/`
+combinator to style all instances of the `paper-dialog`. Style the position,
+colors and other inherited properties of the dialog using the
+`html /deep/ paper-dialog` selector. Use the `html /deep/ paper-dialog::shadow #scroller` selector to size the dialog. Note that if you provided actions, the height
+of the actions will be added to the height of the dialog.
+
+    html /deep/ paper-dialog {
+        color: green;
+    }
+
+    html /deep/ paper-dialog::shadow #scroller {
+        height: 300px;
+        width: 300px;
+    }
+
+Transitions
+-----------
+
+You can use transitions provided by `core-transition` with this element.
+
+    <paper-dialog transition="core-transition-center">
+      <p>Some content</p>
+    </paper-dialog>
+
+Accessibility
+-------------
+
+By default, the `aria-label` will be set to the value of the `heading` attribute.
+
+@group Paper Elements
+@element paper-dialog
+@extends paper-dialog-base
+@homepage github.io
+@status unstable
+-->
+
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+Material Design: <a href="http://www.google.com/design/spec/components/dialogs.html">Dialogs</a>
+
+`paper-dialog-base` is a base class used to implement Material Design styled
+dialogs.
+
+@group Paper Elements
+@element paper-dialog-base
+@extends core-overlay
+@homepage github.io
+@status unstable
+-->
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+
+<polymer-element name="core-key-helper" assetpath="../bower_components/core-overlay/">
+  <script>Polymer("core-key-helper",{ENTER_KEY:13,ESCAPE_KEY:27});</script>
+</polymer-element>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+
+<polymer-element name="core-overlay-layer" assetpath="../bower_components/core-overlay/">
+<template>
+  <style>:host{position:fixed;top:0;left:0;z-index:1000;display:none}:host(.core-opened){display:block}</style>
+  <content></content>
+</template>
+<script>(function(){Polymer("core-overlay-layer",{publish:{opened:false},openedChanged:function(){this.classList.toggle("core-opened",this.opened)},addElement:function(element){if(!this.parentNode){document.querySelector("body").appendChild(this)}if(element.parentNode!==this){element.__contents=[];var ip$=element.querySelectorAll("content");for(var i=0,l=ip$.length,n;i<l&&(n=ip$[i]);i++){this.moveInsertedElements(n);this.cacheDomLocation(n);n.parentNode.removeChild(n);element.__contents.push(n)}this.cacheDomLocation(element);this.updateEventController(element);var h=this.makeHost();h.shadowRoot.appendChild(element);element.__host=h}},makeHost:function(){var h=document.createElement("overlay-host");h.createShadowRoot();this.appendChild(h);return h},moveInsertedElements:function(insertionPoint){var n$=insertionPoint.getDistributedNodes();var parent=insertionPoint.parentNode;insertionPoint.__contents=[];for(var i=0,l=n$.length,n;i<l&&(n=n$[i]);i++){this.cacheDomLocation(n);this.updateEventController(n);insertionPoint.__contents.push(n);parent.appendChild(n)}},updateEventController:function(element){element.eventController=this.element.findController(element)},removeElement:function(element){element.eventController=null;this.replaceElement(element);var h=element.__host;if(h){h.parentNode.removeChild(h)}},replaceElement:function(element){if(element.__contents){for(var i=0,c$=element.__contents,c;c=c$[i];i++){this.replaceElement(c)}element.__contents=null}if(element.__parentNode){var n=element.__nextElementSibling&&element.__nextElementSibling===element.__parentNode?element.__nextElementSibling:null;element.__parentNode.insertBefore(element,n)}},cacheDomLocation:function(element){element.__nextElementSibling=element.nextElementSibling;element.__parentNode=element.parentNode}})})();</script>
+</polymer-element>
+
+
+<!--
+The `core-overlay` element displays overlayed on top of other content. It starts
+out hidden and is displayed by setting its `opened` property to true.
+A `core-overlay's` opened state can be toggled by calling the `toggle`
+method.
+
+The `core-overlay` will, by default, show/hide itself when it's opened. The 
+`target` property may be set to another element to cause that element to 
+be shown when the overlay is opened.
+
+It's common to want a `core-overlay` to animate to its opened
+position. The `core-overlay` element uses a `core-transition` to handle
+animation. The default transition is `core-transition-fade` which 
+causes the overlay to fade in when displayed. See 
+<a href="../core-transition/">`core-transition`</a> for more
+information about customizing a `core-overlay's` opening animation. The
+`backdrop` property can be set to true to show a backdrop behind the overlay
+that will darken the rest of the window.
+
+An element that should close the `core-overlay` will automatically
+do so if it's given the `core-overlay-toggle` attribute. This attribute
+can be customized with the `closeAttribute` property. You can also use
+`closeSelector` if more general matching is needed.
+
+By default  `core-overlay` will close whenever the user taps outside it or
+presses the escape key. This behavior can be turned off via the
+`autoCloseDisabled` property.
+
+    <core-overlay>
+      <h2>Dialog</h2>
+      <input placeholder="say something..." autofocus>
+      <div>I agree with this wholeheartedly.</div>
+      <button core-overlay-toggle>OK</button>
+    </core-overlay>
+
+`core-overlay` will automatically size and position itself according to the 
+following rules. The overlay's size is constrained such that it does not
+overflow the screen. This is done by setting maxHeight/maxWidth on the 
+`sizingTarget`. If the `sizingTarget` already has a setting for one of these
+properties, it will not be overridden. The overlay should
+be positioned via css or imperatively using the `core-overlay-position` event.
+If the overlay is not positioned vertically via setting `top` or `bottom`, it
+will be centered vertically. The same is true horizontally via a setting to 
+`left` or `right`. In addition, css `margin` can be used to provide some space
+around the overlay. This can be used to ensure
+that, for example, a drop shadow is always visible around the overlay.
+
+@group Core Elements
+@element core-overlay
+@homepage github.io
+-->
+<!--
+Fired when the `core-overlay`'s `opened` property changes.
+
+@event core-overlay-open
+@param {Object} detail
+@param {Object} detail.opened the opened state
+-->
+<!--
+Fired when the `core-overlay` has completely opened.
+
+@event core-overlay-open-completed
+-->
+<!--
+Fired when the `core-overlay` has completely closed.
+
+@event core-overlay-close-completed
+-->
+<!--
+Fired when the `core-overlay` needs to position itself. Optionally, implement
+in order to position an overlay via code. If the overlay was not otherwise
+positioned, it's important to indicate how the overlay has been positioned by
+setting the `dimensions.position` object. For example, if the overlay has been
+positioned via setting `right` and `top`, set dimensions.position to an
+object like this: `{v: 'top', h: 'right'}`.
+
+@event core-overlay-position
+@param {Object} detail
+@param {Object} detail.target the overlay target
+@param {Object} detail.sizingTarget the overlay sizing target
+@param {Object} detail.opened the opened state
+-->
+<style>.core-overlay-backdrop{position:fixed;top:0;left:0;width:100vw;height:100vh;background-color:#000;opacity:0;transition:opacity .2s}.core-overlay-backdrop.core-opened{opacity:.6}</style>
+
+<polymer-element name="core-overlay" assetpath="../bower_components/core-overlay/">
+<script>(function(){Polymer(Polymer.mixin({publish:{target:null,sizingTarget:null,opened:false,backdrop:false,layered:false,autoCloseDisabled:false,autoFocusDisabled:false,closeAttribute:"core-overlay-toggle",closeSelector:"",transition:"core-transition-fade"},captureEventName:"tap",targetListeners:{tap:"tapHandler",keydown:"keydownHandler","core-transitionend":"transitionend"},attached:function(){this.resizerAttachedHandler()},detached:function(){this.resizerDetachedHandler()},resizerShouldNotify:function(){return this.opened},registerCallback:function(element){this.layer=document.createElement("core-overlay-layer");this.keyHelper=document.createElement("core-key-helper");this.meta=document.createElement("core-transition");this.scrim=document.createElement("div");this.scrim.className="core-overlay-backdrop"},ready:function(){this.target=this.target||this;Polymer.flush()},toggle:function(){this.opened=!this.opened},open:function(){this.opened=true},close:function(){this.opened=false},domReady:function(){this.ensureTargetSetup()},targetChanged:function(old){if(this.target){if(this.target.tabIndex<0){this.target.tabIndex=-1}this.addElementListenerList(this.target,this.targetListeners);this.target.style.display="none";this.target.__overlaySetup=false}if(old){this.removeElementListenerList(old,this.targetListeners);var transition=this.getTransition();if(transition){transition.teardown(old)}else{old.style.position="";old.style.outline=""}old.style.display=""}},transitionChanged:function(old){if(!this.target){return}if(old){this.getTransition(old).teardown(this.target)}this.target.__overlaySetup=false},ensureTargetSetup:function(){if(!this.target||this.target.__overlaySetup){return}if(!this.sizingTarget){this.sizingTarget=this.target}this.target.__overlaySetup=true;this.target.style.display="";var transition=this.getTransition();if(transition){transition.setup(this.target)}var style=this.target.style;var computed=getComputedStyle(this.target);if(computed.position==="static"){style.position="fixed"}style.outline="none";style.display="none"},openedChanged:function(){this.transitioning=true;this.ensureTargetSetup();this.prepareRenderOpened();this.async(function(){this.target.style.display="";this.target.offsetWidth;this.renderOpened()});this.fire("core-overlay-open",this.opened)},prepareRenderOpened:function(){if(this.opened){addOverlay(this)}this.prepareBackdrop();this.async(function(){if(!this.autoCloseDisabled){this.enableElementListener(this.opened,document,this.captureEventName,"captureHandler",true)}});this.enableElementListener(this.opened,window,"resize","resizeHandler");if(this.opened){this.target.offsetHeight;this.discoverDimensions();this.preparePositioning();this.positionTarget();this.updateTargetDimensions();this.finishPositioning();if(this.layered){this.layer.addElement(this.target);this.layer.opened=this.opened}}},renderOpened:function(){this.notifyResize();var transition=this.getTransition();if(transition){transition.go(this.target,{opened:this.opened})}else{this.transitionend()}this.renderBackdropOpened()},transitionend:function(e){if(e&&e.target!==this.target){return}this.transitioning=false;if(!this.opened){this.resetTargetDimensions();this.target.style.display="none";this.completeBackdrop();removeOverlay(this);if(this.layered){if(!currentOverlay()){this.layer.opened=this.opened}this.layer.removeElement(this.target)}}this.fire("core-overlay-"+(this.opened?"open":"close")+"-completed");this.applyFocus()},prepareBackdrop:function(){if(this.backdrop&&this.opened){if(!this.scrim.parentNode){document.body.appendChild(this.scrim);this.scrim.style.zIndex=currentOverlayZ()-1}trackBackdrop(this)}},renderBackdropOpened:function(){if(this.backdrop&&getBackdrops().length<2){this.scrim.classList.toggle("core-opened",this.opened)}},completeBackdrop:function(){if(this.backdrop){trackBackdrop(this);if(getBackdrops().length===0){this.scrim.parentNode.removeChild(this.scrim)}}},preparePositioning:function(){this.target.style.transition=this.target.style.webkitTransition="none";this.target.style.transform=this.target.style.webkitTransform="none";this.target.style.display=""},discoverDimensions:function(){if(this.dimensions){return}var target=getComputedStyle(this.target);var sizer=getComputedStyle(this.sizingTarget);this.dimensions={position:{v:target.top!=="auto"?"top":target.bottom!=="auto"?"bottom":null,h:target.left!=="auto"?"left":target.right!=="auto"?"right":null,css:target.position},size:{v:sizer.maxHeight!=="none",h:sizer.maxWidth!=="none"},margin:{top:parseInt(target.marginTop)||0,right:parseInt(target.marginRight)||0,bottom:parseInt(target.marginBottom)||0,left:parseInt(target.marginLeft)||0}}},finishPositioning:function(target){this.target.style.display="none";this.target.style.transform=this.target.style.webkitTransform="";this.target.offsetWidth;this.target.style.transition=this.target.style.webkitTransition=""},getTransition:function(name){return this.meta.byId(name||this.transition)},getFocusNode:function(){return this.target.querySelector("[autofocus]")||this.target},applyFocus:function(){var focusNode=this.getFocusNode();if(this.opened){if(!this.autoFocusDisabled){focusNode.focus()}}else{focusNode.blur();if(currentOverlay()==this){console.warn("Current core-overlay is attempting to focus itself as next! (bug)")}else{focusOverlay()}}},positionTarget:function(){this.fire("core-overlay-position",{target:this.target,sizingTarget:this.sizingTarget,opened:this.opened});if(!this.dimensions.position.v){this.target.style.top="0px"}if(!this.dimensions.position.h){this.target.style.left="0px"}},updateTargetDimensions:function(){this.sizeTarget();this.repositionTarget()},sizeTarget:function(){this.sizingTarget.style.boxSizing="border-box";var dims=this.dimensions;var rect=this.target.getBoundingClientRect();if(!dims.size.v){this.sizeDimension(rect,dims.position.v,"top","bottom","Height")}if(!dims.size.h){this.sizeDimension(rect,dims.position.h,"left","right","Width")}},sizeDimension:function(rect,positionedBy,start,end,extent){var dims=this.dimensions;var flip=positionedBy===end;var m=flip?start:end;var ws=window["inner"+extent];var o=dims.margin[m]+(flip?ws-rect[end]:rect[start]);var offset="offset"+extent;var o2=this.target[offset]-this.sizingTarget[offset];this.sizingTarget.style["max"+extent]=ws-o-o2+"px"},repositionTarget:function(){if(this.dimensions.position.css!=="fixed"){return}if(!this.dimensions.position.v){var t=(window.innerHeight-this.target.offsetHeight)/2;t-=this.dimensions.margin.top;this.target.style.top=t+"px"}if(!this.dimensions.position.h){var l=(window.innerWidth-this.target.offsetWidth)/2;l-=this.dimensions.margin.left;this.target.style.left=l+"px"}},resetTargetDimensions:function(){if(!this.dimensions||!this.dimensions.size.v){this.sizingTarget.style.maxHeight="";this.target.style.top=""}if(!this.dimensions||!this.dimensions.size.h){this.sizingTarget.style.maxWidth="";this.target.style.left=""}this.dimensions=null},tapHandler:function(e){if(e.target&&(this.closeSelector&&e.target.matches(this.closeSelector))||this.closeAttribute&&e.target.hasAttribute(this.closeAttribute)){this.toggle()}else{if(this.autoCloseJob){this.autoCloseJob.stop();this.autoCloseJob=null}}},captureHandler:function(e){if(!this.autoCloseDisabled&&currentOverlay()==this){this.autoCloseJob=this.job(this.autoCloseJob,function(){this.close()})}},keydownHandler:function(e){if(!this.autoCloseDisabled&&e.keyCode==this.keyHelper.ESCAPE_KEY){this.close();e.stopPropagation()}},resizeHandler:function(){this.updateTargetDimensions()},addElementListenerList:function(node,events){for(var i in events){this.addElementListener(node,i,events[i])}},removeElementListenerList:function(node,events){for(var i in events){this.removeElementListener(node,i,events[i])}},enableElementListener:function(enable,node,event,methodName,capture){if(enable){this.addElementListener(node,event,methodName,capture)}else{this.removeElementListener(node,event,methodName,capture)}},addElementListener:function(node,event,methodName,capture){var fn=this._makeBoundListener(methodName);if(node&&fn){Polymer.addEventListener(node,event,fn,capture)}},removeElementListener:function(node,event,methodName,capture){var fn=this._makeBoundListener(methodName);if(node&&fn){Polymer.removeEventListener(node,event,fn,capture)}},_makeBoundListener:function(methodName){var self=this,method=this[methodName];if(!method){return}var bound="_bound"+methodName;if(!this[bound]){this[bound]=function(e){method.call(self,e)}}return this[bound]}},Polymer.CoreResizer));var overlays=[];function addOverlay(overlay){var z0=currentOverlayZ();overlays.push(overlay);var z1=currentOverlayZ();if(z1<=z0){applyOverlayZ(overlay,z0)}}function removeOverlay(overlay){var i=overlays.indexOf(overlay);if(i>=0){overlays.splice(i,1);setZ(overlay,"")}}function applyOverlayZ(overlay,aboveZ){setZ(overlay.target,aboveZ+2)}function setZ(element,z){element.style.zIndex=z}function currentOverlay(){return overlays[overlays.length-1]}var DEFAULT_Z=10;function currentOverlayZ(){var z;var current=currentOverlay();if(current){var z1=window.getComputedStyle(current.target).zIndex;if(!isNaN(z1)){z=Number(z1)}}return z||DEFAULT_Z}function focusOverlay(){var current=currentOverlay();if(current&&!current.transitioning){current.applyFocus()}}var backdrops=[];function trackBackdrop(element){if(element.opened){backdrops.push(element)}else{var i=backdrops.indexOf(element);if(i>=0){backdrops.splice(i,1)}}}function getBackdrops(){return backdrops}})();</script>
+</polymer-element>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+`<core-transition-css>` implements CSS transitions as `<core-transition>` objects so they can be
+reused in a pluggable transition system such as in `<core-overlay>`. Currently this class has
+some specific support to animate an element from and to the viewport such as a dialog, but you
+can override it for different effects.
+
+Example:
+
+my-css-transition.html:
+
+    <polymer-element name="my-css-transition" extends="core-transition-css">
+    <template>
+        <style>
+            :host(.my-transition) {
+                opacity: 0;
+                transition: transform 1s ease-out, opacity 1s ease-out;
+            }
+            :host(.my-transition.my-opened) {
+                opacity: 1;
+                transform: none;
+            }
+            :host(.my-transition-top) {
+                transform: translateY(-100vh);
+            }
+            :host(.my-transition-bottom) {
+                transform: translateY(100vh);
+            }
+        </style>
+    </template>
+    <script>
+      Polymer({
+        baseClass: 'my-transition',
+        openedClass: 'my-opened'
+      });
+    </script>
+    </polymer-element>
+
+    <my-css-transition id="my-transition-top" transitionType="top"></my-css-transition>
+    <my-css-transition id="my-transition-bottom" transitionType="bottom"></my-css-transition>
+
+my-css-transition-demo.html
+
+    <link href="components/core-meta/core-meta.html" rel="import">
+    <link href="my-css-transition.html">
+
+    <div id="animate-me"></div>
+
+    <script>
+        // Get the core-transition
+        var meta = document.createElement('core-meta');
+        meta.type = 'transition';
+        var transition1 = meta.byId('my-transition-top');
+
+        // Set up the animation
+        var animated = document.getElementById('animate-me');
+        transition1.setup(animated);
+        transition1.go(animated, {opened: true});
+    </script>
+
+The first element in the template of a `<core-transition-css>` object should be a stylesheet. It
+will be injected to the scope of the animated node in the `setup` function. The node is initially
+invisible with `opacity: 0`, and you can transition it to an "opened" state by passing
+`{opened: true}` to the `go` function.
+
+All nodes being animated will get the class `my-transition` added in the `setup` function.
+Additionally, the class `my-transition-<transitionType>` will be applied. You can use the
+`transitionType` attribute to implement several different behaviors with the same
+`<core-transition-css>` object. In the above example, `<my-css-transition>` implements both
+sliding the node from the top of the viewport and from the bottom of the viewport.
+
+Available transitions
+---------------------
+
+`<core-transition-css>` includes several commonly used transitions.
+
+`core-transition-fade`: Animates from `opacity: 0` to `opacity: 1` when it opens.
+
+`core-transition-center`: Zooms the node into the final size.
+
+`core-transition-top`: Slides the node into the final position from the top.
+
+`core-transition-bottom`: Slides the node into the final position from the bottom.
+
+`core-transition-left`: Slides the node into the final position from the left.
+
+`core-transition-right`: Slides the node into the final position from the right.
+
+@group Polymer Core Elements
+@element core-transition-css
+@extends core-transition
+@status beta
+@homepage github.io
+-->
+
+
+
+<polymer-element name="core-transition-css" extends="core-transition" attributes="transitionType" assetpath="../bower_components/core-transition/">
+<template>
+  <style no-shim="">:host(.core-transition){outline:0;overflow:auto;opacity:0;-webkit-transition:-webkit-transform .2s ease-in-out,opacity .2s ease-in;transition:transform .2s ease-in-out,opacity .2s ease-in}:host(.core-transition.core-opened){opacity:1;-webkit-transform:translateZ(0);transform:translateZ(0)}:host(.core-transition-center){-webkit-transform:scale(0.5);transform:scale(0.5)}:host(.core-transition-top){-webkit-transform:translateY(-200%);transform:translateY(-200%)}:host(.core-transition-bottom){-webkit-transform:translateY(200%);transform:translateY(200%)}:host(.core-transition-left){-webkit-transform:translateX(-200%);transform:translateX(-200%)}:host(.core-transition-right){-webkit-transform:translateX(200%);transform:translateX(200%)}</style>
+</template>
+<script>Polymer("core-transition-css",{baseClass:"core-transition",openedClass:"core-opened",closedClass:"core-closed",completeEventName:"transitionend",publish:{transitionType:null},registerCallback:function(element){this.transitionStyle=element.templateContent().firstElementChild},fetchTemplate:function(){return null},go:function(node,state){if(state.opened!==undefined){this.transitionOpened(node,state.opened)}},setup:function(node){if(!node._hasTransitionStyle){if(!node.shadowRoot){node.createShadowRoot().innerHTML="<content></content>"}this.installScopeStyle(this.transitionStyle,"transition",node.shadowRoot);node._hasTransitionStyle=true}node.classList.add(this.baseClass);if(this.transitionType){node.classList.add(this.baseClass+"-"+this.transitionType)}},teardown:function(node){node.classList.remove(this.baseClass);if(this.transitionType){node.classList.remove(this.baseClass+"-"+this.transitionType)}},transitionOpened:function(node,opened){this.listenOnce(node,this.completeEventName,function(){if(!opened){node.classList.remove(this.closedClass)}this.complete(node)});node.classList.toggle(this.openedClass,opened);node.classList.toggle(this.closedClass,!opened)}});</script>
+</polymer-element>
+
+<core-transition-css id="core-transition-fade"></core-transition-css>
+<core-transition-css id="core-transition-center" transitiontype="center"></core-transition-css>
+<core-transition-css id="core-transition-top" transitiontype="top"></core-transition-css>
+<core-transition-css id="core-transition-bottom" transitiontype="bottom"></core-transition-css>
+<core-transition-css id="core-transition-left" transitiontype="left"></core-transition-css>
+<core-transition-css id="core-transition-right" transitiontype="right"></core-transition-css>
+
+
+<polymer-element name="paper-dialog-base" extends="core-overlay" role="dialog" on-core-overlay-open="{{openAction}}" assetpath="../bower_components/paper-dialog/">
+
+<script>Polymer("paper-dialog-base",{publish:{heading:"",transition:"",layered:true},ready:function(){this.super();this.sizingTarget=this.$.scroller},headingChanged:function(old){var label=this.getAttribute("aria-label");if(!label||label===old){this.setAttribute("aria-label",this.heading)}},openAction:function(){if(this.$.scroller.scrollTop){this.$.scroller.scrollTop=0}}});</script>
+
+</polymer-element>
+
+
+<polymer-element name="paper-dialog" extends="paper-dialog-base" role="dialog" layout="" vertical="" noscript="" assetpath="../bower_components/paper-dialog/">
+
+<template>
+
+  <style>:host{background:#fff;color:rgba(0,0,0,.87);margin:32px;overflow:visible!important}h1{font-size:20px}#scroller{overflow:auto;box-sizing:border-box;padding:24px}</style>
+
+  <paper-shadow z="3" fit=""></paper-shadow>
+
+  <!-- need this because the host needs to be overflow: visible -->
+  <div id="scroller" relative="" flex="" auto="">
+    <template if="{{heading}}">
+      <h1>{{heading}}</h1>
+    </template>
+
+    <content></content>
+  </div>
+
+</template>
+
+</polymer-element>
+</div><div hidden>
+<polymer-element name="shots-page" attributes="" assetpath="shots-page/">
+  <template>
+    <app-globals id="globals" name="Dmitriy Kharaberyush" title="Casette Lollipop" image_url="https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg"></app-globals>
+    <style>:host{display:block}</style>
+    
+    <core-media-query query="min-width: 1040px" querymatches="{{largeScreen}}">
+    </core-media-query>
+    <core-drawer-panel id="drawerPanel" drawerwidth="320px" responsivewidth="{{responsiveWidth}}" touch-action="">
+
+      <core-header-panel id="mainHeaderPanel" main="" mode="cover" shadow="">
+        <core-toolbar class="medium-tall">
+
+          <content select=".menuButton" on-tap="{{ togglePanel }}">
+            <core-icon-button class="menuButton fallback" icon="menu"></core-icon-button>
+          </content>
+          <div hidden>Scroll Header Panel</div>
+          <content select=".sourceButton" on-tap="{{ viewSourceAction }}">
+            <core-icon-button class="sourceButton fallback" icon="launch"></core-icon-button>
+          </content>
+
+        </core-toolbar>
+        <site-search class="fixed" label="label" canbecondensed="" condensed="true"></site-search>
+        <div id="card" on-transitionend="{{ cardTransitionDone }}" style="display: block;" class="">
+
+          <div class="element-label">Scroll Header Panel</div>
+
+          <div class="card-content">
+            <core-scroll-header-panel condenses="" condensedheaderheight="67px" keepcondensedheader="true">
+              <core-toolbar class="" style="background-image:url({{$.globals.values.image_url}})">
+                <paper-icon-button core-drawer-toggle="" icon="menu"></paper-icon-button>
+                <paper-icon-button icon="arrow-back" hidden?="{{!largeScreen}}"></paper-icon-button>
+                <div flex=""></div>
+                <paper-icon-button icon="favorite"></paper-icon-button>
+                <paper-icon-button icon="social:share"></paper-icon-button>
+                <paper-icon-button icon="more-vert"></paper-icon-button>
+                <div id="title" class="bottom indent title">{{$.globals.values.title}}
+                  <small hidden?="{{!largeScreen}}">by <span>{{$.globals.values.name}}</span> <paper-fab mini="" icon="social:person-add" style="position:relative;top:10px;left:10px"></paper-fab></small>
+                </div>
+
+              </core-toolbar>
+
+              <div class="content">
+                <div horizontal?="{{largeScreen}}" layout="" style="padding: 20px" start="">
+                  <div flex="">
+                    <p>
+                      <a href="{{$.globals.values.url}}" target="_blank">
+                        <paper-button raised=""><core-icon icon="launch"></core-icon> View Original</paper-button>
+                      </a>
+                    </p>
+                    <core-item icon="today" label="{{$.globals.values.created || &apos;2010/05/21 16:34:42 -0400&apos;}}"></core-item>
+                    <div class="desc">
+                      <html-echo html="{{$.globals.values.description}}"></html-echo>
+                    </div>
+                  </div>
+                  <paper-shadow style="min-width:250px;margin-left:10px;">
+                    <paper-item>
+                      <div horizontal="" layout="" style="width:215px;">
+                      <span flex="">
+                        <core-icon icon="favorite"></core-icon>
+                        Likes
+                      </span>
+                      <span class="count">{{$.globals.values.likes || 0}}</span>
+                      </div>
+                    </paper-item>
+                    <paper-item>
+                      <div horizontal="" layout="" style="width:215px;">
+                      <span flex="">
+                        <core-icon icon="image:remove-red-eye"></core-icon>
+                        Views
+                      </span>
+                      <span class="count">{{$.globals.values.views || 0}}</span>
+                      </div>
+                    </paper-item>
+                    <paper-item>
+                      <div horizontal="" layout="" style="width:215px;">
+                      <span flex="">
+                        <core-icon icon="shopping-basket"></core-icon>
+                        Buckets
+                      </span>
+                      <span class="count">17</span>
+                      </div>
+                    </paper-item>
+                    <paper-item>
+                      <div horizontal="" layout="" style="width:215px;">
+                      <span flex="">
+                        <core-icon icon="send-money"></core-icon>
+                        Rebounds
+                      </span>
+                      <span class="count">{{$.globals.values.rebounds || 0}}</span>
+                      </div>
+                    </paper-item>
+                    <a href="{{$.globals.values.url}}#comments-section">
+                      <paper-item>
+                        
+                          <div horizontal="" layout="" style="width:215px;">
+                            <span flex="">
+                              <core-icon icon="communication:chat"></core-icon>
+                              Comments
+                            </span>
+                            <span class="count">{{$.globals.values.comments || 0}}</span>
+                          </div>
+                        
+                      </paper-item>
+                    </a>
+                  </paper-shadow>
+                </div>
+                <div horizontal="" layout="" style="padding:20px">
+                  <h2 flex="">Comments <small style="font-size:12px">({{$.globals.values.comments || 0}})</small></h2>
+                  <paper-tabs selected="0">
+                    <paper-tab>Oldest</paper-tab>
+                    <paper-tab>Newest</paper-tab>
+                    <paper-tab>Liked</paper-tab>
+                  </paper-tabs>
+                </div>
+                <sample-content size="10"></sample-content>
+
+              </div>
+
+            </core-scroll-header-panel>
+          </div>
+          
+        </div>
+        
+      </core-header-panel>
+
+      <core-header-panel drawer="">
+        <core-toolbar class="medium-tall">
+          <div flex="" class="logo">Dribbble</div>
+          <paper-tabs selected="{{ selected }}" selectedindex="0" id="paper_tabs" class="bottom main-label fit">
+            <paper-tab active="">Popular</paper-tab>
+            <paper-tab>Everyone</paper-tab>
+            <paper-tab>Debuts</paper-tab>
+          </paper-tabs>
+        </core-toolbar>
+        
+        
+          
+        <core-animated-pages id="core-animated-pages" transitions="slide-from-right" selected="{{ selected }}" selectedindex="0" notap="" lastselected="1" horizontal="" layout="" one="" flex="">
+          <div>
+            <x-dribbble list="popular"></x-dribbble>
+          </div>
+          <div><x-dribbble list="everyone"></x-dribbble></div>
+          <div><x-dribbble list="debuts"></x-dribbble></div>
+        </core-animated-pages>
+        
+
+      </core-header-panel>
+
+    </core-drawer-panel>
+    <paper-fab icon="add" class="bottom" on-tap="{{toggle}}"></paper-fab>
+    <add-shot id="dialog" transition="core-transition-bottom">
+    </add-shot>
+  </template>
+  <script>(function(){Polymer("shots-page",{domReady:function(){var titleStyle=this.$.title.style;document.addEventListener("core-header-transform",function(e){var d=e.detail;var m=d.height-d.condensedHeight;var scale=Math.max(.55,(m-d.y)/(m/.25)+.55);titleStyle.transform=titleStyle.webkitTransform="scale("+scale+") translateZ(0)"})},willPrepare:function(){this.super();this.$.scrollHeaderPanel.measureHeaderHeight();this.$.scrollHeaderPanel.scroller.scrollTop=0},selected:0,toggle:function(){this.$.dialog.toggle()}})})();</script>
+</polymer-element>
+<polymer-element name="html-echo" attributes="html" assetpath="shots-page/">
+    <script>Polymer("html-echo",{htmlChanged:function(){this.innerHTML=this.html}});</script>
+  </polymer-element>
+</div><div hidden><!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE
+The complete set of authors may be found at http://polymer.github.io/AUTHORS
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS
+-->
+
+<!--
+
+Material Design: <a href="http://www.google.com/design/spec/components/text-fields.html#text-fields-single-line-text-field">Single line text field</a>
+
+`paper-input` is a single-line text field for user input. It is a convenience element composed of
+a `paper-input-decorator` and a `input is="core-input"`.
+
+Example:
+
+    <paper-input label="Your Name"></paper-input>
+
+If you need more control over the `input` element, use `paper-input-decorator`.
+
+Theming
+-------
+
+`paper-input` can be styled similarly to `paper-input-decorator`.
+
+Form submission
+---------------
+
+Unlike inputs using `paper-input-decorator` directly, `paper-input` does not work out of
+the box with the native `form` element. This is because the native `form` is not aware of
+shadow DOM and does not treat `paper-input` as a form element.
+
+Use `paper-input-decorator` directly, or see
+<a href="https://github.com/garstasio/ajax-form">`ajax-form`</a> for a possible solution
+to submitting a `paper-input`.
+
+Validation
+----------
+
+Use `paper-input-decorator` if you would like to implement validation.
+
+@group Paper Elements
+@element paper-input
+@homepage github.io
+-->
+
+
+
+
+
+<polymer-element name="paper-input" assetpath="../bower_components/paper-input/">
+
+<template>
+
+  <style>:host{display:inline-block}</style>
+
+  <paper-input-decorator id="decorator" label="{{label}}" floatinglabel="{{floatingLabel}}" value="{{value}}" disabled?="{{disabled}}">
+    <input is="core-input" value="{{value}}" committedvalue="{{committedValue}}" on-change="{{changeAction}}" disabled?="{{disabled}}">
+  </paper-input-decorator>
+
+</template>
+
+<script>Polymer("paper-input",{publish:{label:"",floatingLabel:false,disabled:{value:false,reflect:true},value:"",committedValue:""},valueChanged:function(){this.$.decorator.updateLabelVisibility(this.value)},changeAction:function(e){if(!window.ShadowDOMPolyfill){this.fire("change",null,this)}}});</script>
+
+</polymer-element>
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+`paper-dropdown` is a `core-dropdown` with a `paper-shadow`. By default, it
+is animated on open with `paper-dropdown-transition`. Use this element with
+`paper-dropdown-menu` or `paper-menu-button` to implement UI controls that
+open a drop-down.
+
+Example:
+
+    <paper-dropdown>
+      Hi!
+    </paper-dropdown>
+
+Theming
+-------
+
+Style the background color of the dropdown with these selectors:
+
+    paper-dropdown::shadow #ripple,
+    paper-dropdown::shadow #background {
+        background-color: green;
+    }
+
+@group Paper Elements
+@element paper-dropdown
+@extends core-dropdown
+@status unstable
+-->
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+`core-dropdown` is an element that is initially hidden and is positioned relatively to another
+element, usually the element that triggers the dropdown. The dropdown and the triggering element
+should be children of the same offsetParent, e.g. the same `<div>` with `position: relative`.
+It can be used to implement dropdown menus, menu buttons, etc..
+
+Example:
+
+    <template is="auto-binding">
+      <div relative>
+        <core-icon-button id="trigger" icon="menu"></core-icon-button>
+        <core-dropdown relatedTarget="{{$.trigger}}">
+          <core-menu>
+            <core-item>Cut</core-item>
+            <core-item>Copy</core-item>
+            <core-item>Paste</core-item>
+          </core-menu>
+        </core-dropdown>
+      </div>
+    </template>
+
+Positioning
+-----------
+
+By default, the dropdown is absolutely positioned on top of the `relatedTarget` with the top and
+left edges aligned. The `halign` and `valign` properties controls the various alignments. The size
+of the dropdown is automatically restrained such that it is entirely visible on the screen. Use the
+`margin`
+
+If you need more control over the dropdown's position, use CSS. The `halign` and `valign` properties are
+ignored if the dropdown is positioned with CSS.
+
+Example:
+
+    <style>
+      /* manually position the dropdown below the trigger */
+      core-dropdown {
+        position: absolute;
+        top: 38px;
+        left: 0;
+      }
+    </style>
+
+    <template is="auto-binding">
+      <div relative>
+        <core-icon-button id="trigger" icon="menu"></core-icon-button>
+        <core-dropdown relatedTarget="{{$.trigger}}">
+          <core-menu>
+            <core-item>Cut</core-item>
+            <core-item>Copy</core-item>
+            <core-item>Paste</core-item>
+          </core-menu>
+        </core-dropdown>
+      </div>
+    </template>
+
+The `layered` property
+----------------------
+
+Sometimes you may need to render the dropdown in a separate layer. For example,
+it may be nested inside an element that needs to be `overflow: hidden`, or
+its parent may be overlapped by elements above it in stacking order.
+
+The `layered` property will place the dropdown in a separate layer to ensure
+it appears on top of everything else. Note that this implies the dropdown will
+not scroll with its container.
+
+@group Polymer Core Elements
+@element core-dropdown
+@extends core-overlay
+@homepage github.io
+-->
+
+
+
+<style shim-shadowdom="">html /deep/ core-dropdown{position:absolute;overflow:auto;background-color:#fff}</style>
+
+<polymer-element name="core-dropdown" extends="core-overlay" assetpath="../bower_components/core-dropdown/">
+<script>(function(){function docElem(property){var t;return((t=document.documentElement)||(t=document.body.parentNode))&&typeof t[property]==="number"?t:document.body}function viewSize(){var doc=docElem("clientWidth");var body=document.body;var w,h;return typeof document.clientWidth==="number"?{w:document.clientWidth,h:document.clientHeight}:doc===body||(w=Math.max(doc.clientWidth,body.clientWidth))>self.innerWidth||(h=Math.max(doc.clientHeight,body.clientHeight))>self.innerHeight?{w:body.clientWidth,h:body.clientHeight}:{w:w,h:h}}Polymer("core-dropdown",{publish:{relatedTarget:null,halign:"left",valign:"top"},measure:function(){var target=this.target;var pos=target.style.position;target.style.position="fixed";target.style.left="0px";target.style.top="0px";var rect=target.getBoundingClientRect();target.style.position=pos;target.style.left=null;target.style.top=null;return rect},resetTargetDimensions:function(){var dims=this.dimensions;var style=this.target.style;if(dims.position.h_by===this.localName){style[dims.position.h]=null;dims.position.h_by=null}if(dims.position.v_by===this.localName){style[dims.position.v]=null;dims.position.v_by=null}style.width=null;style.height=null;this.super()},positionTarget:function(){if(!this.relatedTarget){this.relatedTarget=this.target.parentElement||this.target.parentNode&&this.target.parentNode.host;if(!this.relatedTarget){this.super();return}}var target=this.sizingTarget;var rect=this.measure();target.style.width=Math.ceil(rect.width)+"px";target.style.height=Math.ceil(rect.height)+"px";if(this.layered){this.positionLayeredTarget()}else{this.positionNestedTarget()}},positionLayeredTarget:function(){var target=this.target;var rect=this.relatedTarget.getBoundingClientRect();var dims=this.dimensions;var margin=dims.margin;var vp=viewSize();if(!dims.position.h){if(this.halign==="right"){target.style.right=vp.w-rect.right-margin.right+"px";dims.position.h="right"}else{target.style.left=rect.left-margin.left+"px";dims.position.h="left"}dims.position.h_by=this.localName}if(!dims.position.v){if(this.valign==="bottom"){target.style.bottom=vp.h-rect.bottom-margin.bottom+"px";dims.position.v="bottom"}else{target.style.top=rect.top-margin.top+"px";dims.position.v="top"}dims.position.v_by=this.localName}if(dims.position.h_by||dims.position.v_by){target.style.position="fixed"}},positionNestedTarget:function(){var target=this.target;var related=this.relatedTarget;var t_op=target.offsetParent;var r_op=related.offsetParent;if(window.ShadowDOMPolyfill){t_op=wrap(t_op);r_op=wrap(r_op)}if(t_op!==r_op&&t_op!==related){console.warn("core-dropdown-overlay: dropdown's offsetParent must be the relatedTarget or the relatedTarget's offsetParent!")}var dims=this.dimensions;var margin=dims.margin;var inside=t_op===related;if(!dims.position.h){if(this.halign==="right"){target.style.right=(inside?0:t_op.offsetWidth-related.offsetLeft-related.offsetWidth)-margin.right+"px";dims.position.h="right"}else{target.style.left=(inside?0:related.offsetLeft)-margin.left+"px";dims.position.h="left"}dims.position.h_by=this.localName}if(!dims.position.v){if(this.valign==="bottom"){target.style.bottom=(inside?0:t_op.offsetHeight-related.offsetTop-related.offsetHeight)-margin.bottom+"px";dims.position.v="bottom"}else{target.style.top=(inside?0:related.offsetTop)-margin.top+"px";dims.position.v="top"}dims.position.v_by=this.localName}}})})();</script>
+</polymer-element>
+
+
+
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<!--
+
+`paper-dropdown-transition` is a transition for `paper-dropdown`.
+
+Add the class `menu` to a `core-selector` child of the `paper-dropdown` to
+enable the optional list cascade transition.
+
+@group Paper Elements
+@class paper-dropdown-transition
+@extends core-transition-css
+@status unstable
+-->
+
+
+<!--
+    @license
+    Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+    This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+    The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+    The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+    Code distributed by Google as part of the polymer project is also
+    subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<script src="../bower_components/web-animations-js/web-animations-next-lite.min.js"></script>
+
+
+<polymer-element name="paper-dropdown-transition" extends="core-transition-css" assetpath="../bower_components/paper-dropdown/">
+  <template>
+    <style no-shim="">:host(.core-transition) #ripple,:host(.core-transition) #background{opacity:0}:host(.core-transition) #scroller{opacity:0}</style>
+  </template>
+  <script>Polymer("paper-dropdown-transition",{publish:{duration:500},setup:function(node){this.super(arguments);var to={top:"0%",left:"0%",bottom:"100%",right:"100%"};var bg=node.$.background;bg.style.webkitTransformOrigin=to[node.halign]+" "+to[node.valign];bg.style.transformOrigin=to[node.halign]+" "+to[node.valign]},transitionOpened:function(node,opened){this.super(arguments);if(opened){if(this.player){this.player.cancel()}var duration=Number(node.getAttribute("duration"))||this.duration;var anims=[];var size=node.getBoundingClientRect();var ink=node.$.ripple;var offset=.2;anims.push(new Animation(ink,[{opacity:.9,transform:"scale(0)"},{opacity:.9,transform:"scale(1)"}],{duration:duration*offset}));var bg=node.$.background;var sx=40/size.width;var sy=40/size.height;anims.push(new Animation(bg,[{opacity:.9,transform:"scale("+sx+","+sy+")"},{opacity:1,transform:"scale("+Math.max(sx,.95)+","+Math.max(sy,.5)+")"},{opacity:1,transform:"scale(1, 1)"}],{delay:duration*offset,duration:duration*(1-offset),fill:"forwards"}));var menu=node.querySelector(".menu");if(menu){var items=menu.items||menu.children.array();var itemDelay=offset+(1-offset)/2;var itemDuration=duration*(1-itemDelay)/items.length;var reverse=this.valign==="bottom";items.forEach(function(item,i){anims.push(new Animation(item,[{opacity:0},{opacity:1}],{delay:duration*itemDelay+itemDuration*(reverse?items.length-1-i:i),duration:itemDuration,fill:"both"}))}.bind(this));anims.push(new Animation(node.$.scroller,[{opacity:1},{opacity:1}],{delay:duration*itemDelay,duration:itemDuration*items.length,fill:"both"}))}else{anims.push(new Animation(node.$.scroller,[{opacity:0},{opacity:1}],{delay:duration*(offset+(1-offset)/2),duration:duration*.5,fill:"both"}))}var group=new AnimationGroup(anims,{easing:"cubic-bezier(0.4, 0, 0.2, 1)"});this.player=document.timeline.play(group);this.player.onfinish=function(){this.fire("core-transitionend",this,node)}.bind(this)}else{this.fire("core-transitionend",this,node)}}});</script>
+</polymer-element>
+
+<paper-dropdown-transition id="paper-dropdown-transition"></paper-dropdown-transition>
+
+<style shim-shadowdom="">html /deep/ paper-dropdown{position:absolute;overflow:visible;min-height:40px}</style>
+
+<polymer-element name="paper-dropdown" extends="core-dropdown" assetpath="../bower_components/paper-dropdown/">
+<template>
+
+  <style>#ripple{background-color:#fff;position:absolute;left:0;top:0;width:40px;height:40px;border-radius:50%;box-shadow:0 2px 3px 0 rgba(0,0,0,.26);opacity:0}:host([halign=right]) #ripple{left:auto;right:0}:host([valign=bottom]) #ripple{top:auto;bottom:0}#background{background-color:#fff;border-radius:inherit}#scroller{overflow:auto;box-sizing:border-box}</style>
+
+  <div id="ripple"></div>
+
+  <div id="background" fit="">
+    <paper-shadow fit=""></paper-shadow>
+  </div>
+
+  <div id="scroller" relative="">
+    <content></content>
+  </div>
+
+</template>
+<script>Polymer("paper-dropdown",{publish:{transition:"paper-dropdown-transition"},ready:function(){this.super();this.sizingTarget=this.$.scroller}});</script>
+</polymer-element>
+<!--
+Copyright (c) 2014 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+
+<!--
+
+`paper-dropdown-menu` works together with `paper-dropdown` and `core-menu` to
+implement a drop-down menu. The currently selected item is displayed in the
+control. If no item is selected, the `label` is displayed instead.
+
+The child element with the class `dropdown` will be used as the drop-down
+menu. It should be a `paper-dropdown` or other overlay element. You should
+also provide a `core-selector` or other selector element, such as `core-menu`,
+in the drop-down. You should apply the class `menu` to the selector element.
+
+Example:
+
+    <paper-dropdown-menu label="Your favorite pastry">
+        <paper-dropdown class="dropdown">
+            <core-menu class="menu">
+                <paper-item>Croissant</paper-item>
+                <paper-item>Donut</paper-item>
+                <paper-item>Financier</paper-item>
+                <paper-item>Madeleine</paper-item>
+            </core-menu>
+        </paper-dropdown>
+    </paper-dropdown-menu>
+
+This example renders a drop-down menu with 4 options.
+
+@group Paper Elements
+@element paper-dropdown-menu
+@extends core-dropdown-base
+@status unstable
+@homepage github.io
+-->
+
+<!--
+Fired when an item's selection state is changed. This event is fired both
+when an item is selected or deselected. The `isSelected` detail property
+contains the selection state.
+
+@event core-select
+@param {Object} detail
+  @param {boolean} detail.isSelected true for selection and false for deselection
+  @param {Object} detail.item the item element
+-->
+
+
+
+
+
+
+
+
+
+<style shim-shadowdom="">html /deep/ #paper-dropdown-menu-dropdown{margin:12px;overflow:visible}html /deep/ #paper-dropdown-menu-dropdown #menu{padding:8px 0;margin:0}html /deep/ #paper-dropdown-menu-dropdown .menu-container{overflow:auto;max-height:100%;max-width:100%}</style>
+
+<polymer-element name="paper-dropdown-menu" extends="core-dropdown-base" relative="" layout="" inline="" horizontal="" center="" tabindex="0" assetpath="../bower_components/paper-dropdown-menu/">
+<template>
+
+  <style>:host{-moz-user-select:none;-ms-user-select:none;-webkit-user-select:none;user-select:none;cursor:pointer;padding:.5em 0 .25em;margin:.75em 0;border-bottom:1px solid #757575;outline:0}#label,#arrow{color:#757575}#label{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}</style>
+
+  <core-a11y-keys target="{{}}" keys="enter space" on-keys-pressed="{{toggleOverlay}}"></core-a11y-keys>
+
+  <div flex="" auto="" id="label">{{selectedItemLabel || label}}</div>
+  <core-icon id="arrow" icon="{{opened ? openedIcon : closedIcon}}"></core-icon>
+
+  <content></content>
+
+</template>
+<script>(function(){var p={publish:{label:"Select an item",openedIcon:"arrow-drop-up",closedIcon:"arrow-drop-down"},selectedItemLabel:"",overlayListeners:{"core-overlay-open":"openAction","core-activate":"activateAction","core-select":"selectAction"},activateAction:function(e){this.opened=false},selectAction:function(e){var detail=e.detail;if(detail.isSelected){this.selectedItemLabel=detail.item.label||detail.item.textContent}else{this.selectedItemLabel=""}}};Polymer.mixin2(p,Polymer.CoreFocusable);Polymer(p)})();</script>
+</polymer-element>
+
+
+
+<polymer-element name="add-shot" extends="paper-dialog" layout="" vertical="" assetpath="add-shot/">
+  <template>
+    <style>:host{display:block;position:fixed;top:0;left:0;right:0;bottom:0;background-color:#fff}core-toolbar{background-color:#3F51B5;color:#fff}.shot-preview{background:#3F51B5 url(https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg);background-size:100% auto;min-height:300px}.item{margin-left:16px;color:rgba(0,0,0,.54)}.item:last-child{margin-right:16px}.item-menu{width:100px}paper-fab{background-color:#E91E63;margin-right:20px;margin-bottom:-20px}@media screen and (min-width:640px){.content{margin:64px auto;padding-bottom:16px;width:640px;background-color:#fff}::shadow #mainContainer{background-color:#eee}#contactPhoto{height:260px}}</style>
+
+    <core-header-panel id="headerPanel" fit="" mode="seamed">
+
+      <core-toolbar>
+        <a on-tap="{{toggle}}">
+          <paper-icon-button icon="arrow-back"></paper-icon-button>
+        </a>
+        <div id="title" flex="">{{shotTitle}}</div>
+        <a on-tap="{{toggle}}">
+          <paper-icon-button icon="check"></paper-icon-button>
+        </a>
+      </core-toolbar>
+
+      <div class="content">
+        <!-- Contact photo area -->
+        <div id="shotPhoto" class="shot-preview" layout="" horizontal="" end-justified="" end="">
+          <paper-fab icon="add" on-tap="{{upload}}"></paper-fab>
+          <input type="file" name="File" id="file" style="display:none" on-change="{{setFiles}}">
+          <core-ajax id="ajax" url="/file-upload" method="POST" handleas="json" response="{{response}}"></core-ajax>
+        </div>
+
+        <!-- Contact form -->
+        <div id="contactForm" style="position: relative;">
+
+          <!-- Name -->
+          <div class="formRow" layout="" horizontal="" center="">
+            <div class="item item-icon">
+              <core-icon icon="social:person"></core-icon>
+            </div>
+            <paper-input class="item item-input" floatinglabel="" label="Title" value="{{shotTitle}}" flex="">
+            </paper-input>
+          </div>
+
+          <!-- Tags -->
+          <div class="formRow" layout="" horizontal="" center="">
+            <div class="item item-icon">
+              <core-icon icon="label"></core-icon>
+            </div>
+            <paper-input class="item item-input" label="Tags" floatinglabel="" flex="">
+            </paper-input>
+            <paper-dropdown-menu class="item item-menu">
+              <paper-dropdown class="dropdown" halign="right">
+                <core-menu class="menu" selected="Mobile" valueattr="label">
+                  <paper-item label="Mobile">Android</paper-item>
+                  <paper-item label="Work">Material Design</paper-item>
+                  <paper-item label="Home">Icon</paper-item>
+                </core-menu>
+              </paper-dropdown>
+            </paper-dropdown-menu>
+          </div>
+          
+          <!-- Add desc -->
+          <div class="formRow" layout="" horizontal="" center="">
+            <div class="item item-icon">
+              <core-icon icon="note-add"></core-icon>
+            </div>
+            <paper-input class="item item-input" label="Shot description" floatinglabel="" multiline="" flex="">
+            </paper-input>
+          </div>
+
+          <!-- Attachments -->
+          <div class="formRow" layout="" horizontal="" center="">
+            <div class="item item-icon">
+              <core-icon icon="attachment"></core-icon>
+            </div>
+            <paper-input class="item item-input" label="Attachment" floatinglabel="" flex=""></paper-input>
+          </div>
+
+        </div>
+      </div>
+
+    </core-header-panel>
+  </template>
+  <script>(function(){Polymer("add-shot",{publish:{contacts:null},willPrepare:function(){this.super();this.$.headerPanel.scroller.scrollTop=0},setFiles:function(e,detail,sender){var formData=new FormData;for(var i=0,f;f=sender.files[i];++i){formData.append(sender.name,f,this.$.name.value||f.name)}this.$.ajax.body=formData;this.$.ajax.contentType=null},upload:function(e,detail,sender){if(!this.$.file.files.length){alert("Please include a file");return}this.$.ajax.go()},responseChanged:function(){console.log("Response from server",this.response)}})})();</script>
+</polymer-element></div><div hidden><polymer-element name="app-globals" attributes="values" assetpath="app-globals/">
+  <script>(function(){var values={};Polymer("app-globals",{ready:function(){this.values=values;for(var i=0;i<this.attributes.length;++i){var attr=this.attributes[i];values[attr.nodeName]=attr.value}}})})();</script>
 </polymer-element></div>

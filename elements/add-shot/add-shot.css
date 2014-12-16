@@ -1,0 +1,47 @@
+:host {
+  display: block;
+  position: fixed;
+  top:0;
+  left:0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+}
+core-toolbar {
+  background-color: #3F51B5;
+  color: #fff;
+}
+.shot-preview {
+  background: #3F51B5 url('https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg');
+  background-size: 100% auto;
+  min-height: 300px;
+}
+.item {
+  margin-left: 16px;
+  color: rgba(0,0,0,.54);
+}
+.item:last-child {
+  margin-right: 16px;
+}
+.item-menu {
+  width: 100px;
+}
+paper-fab {
+  background-color: #E91E63;
+  margin-right: 20px;
+  margin-bottom: -20px;
+}
+@media screen and (min-width: 640px) {
+  .content {
+    margin: 64px auto;
+    padding-bottom: 16px;
+    width: 640px;
+    background-color: #fff;
+  }
+  ::shadow #mainContainer {
+    background-color: #eee;
+  }
+  #contactPhoto {
+    height: 260px;
+  }
+}

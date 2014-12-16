@@ -1,0 +1,199 @@
+
+<polymer-element name="shots-page" attributes="">
+  <template>
+    <app-globals id="globals" name="Dmitriy Kharaberyush" title="Casette Lollipop" image_url="https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg"></app-globals>
+    <link rel="stylesheet" href="shots-page.css">
+    
+    <core-media-query query="min-width: 1040px" queryMatches="{{largeScreen}}">
+    </core-media-query>
+    <core-drawer-panel id="drawerPanel" drawerwidth="320px" responsivewidth="{{responsiveWidth}}" touch-action="">
+
+      <core-header-panel id="mainHeaderPanel" main="" mode="cover" shadow="">
+        <core-toolbar class="medium-tall">
+
+          <content select=".menuButton" on-tap="{{ togglePanel }}">
+            <core-icon-button class="menuButton fallback" icon="menu"></core-icon-button>
+          </content>
+          <div hidden="">Scroll Header Panel</div>
+          <content select=".sourceButton" on-tap="{{ viewSourceAction }}">
+            <core-icon-button class="sourceButton fallback" icon="launch"></core-icon-button>
+          </content>
+
+        </core-toolbar>
+        <site-search class="fixed" label="label" canBeCondensed condensed="true"></site-search>
+        <div id="card" on-transitionend="{{ cardTransitionDone }}" style="display: block;" class="">
+
+          <div class="element-label">Scroll Header Panel</div>
+
+          <div class="card-content">
+            <core-scroll-header-panel condenses="" condensedHeaderHeight="67px" keepCondensedHeader="true">
+              <core-toolbar class="" style="background-image:url({{$.globals.values.image_url}})">
+                <paper-icon-button core-drawer-toggle icon="menu"></paper-icon-button>
+                <paper-icon-button icon="arrow-back" hidden?="{{!largeScreen}}"></paper-icon-button>
+                <div flex></div>
+                <paper-icon-button icon="favorite"></paper-icon-button>
+                <paper-icon-button icon="social:share"></paper-icon-button>
+                <paper-icon-button icon="more-vert"></paper-icon-button>
+                <div id="title" class="bottom indent title">{{$.globals.values.title}}
+                  <small hidden?="{{!largeScreen}}">by <span>{{$.globals.values.name}}</span> <paper-fab mini icon="social:person-add" style="position:relative;top:10px;left:10px"></paper-fab></small>
+                </div>
+
+              </core-toolbar>
+
+              <div class="content">
+                <div horizontal?="{{largeScreen}}" layout style="padding: 20px" start>
+                  <div flex>
+                    <p>
+                      <a href="{{$.globals.values.url}}" target="_blank">
+                        <paper-button raised><core-icon icon="launch"></core-icon> View Original</paper-button>
+                      </a>
+                    </p>
+                    <core-item icon="today" label="{{$.globals.values.created || '2010/05/21 16:34:42 -0400'}}"></core-item>
+                    <div class="desc">
+                      <html-echo html="{{$.globals.values.description}}"></html-echo>
+                    </div>
+                  </div>
+                  <paper-shadow style="min-width:250px;margin-left:10px;">
+                    <paper-item>
+                      <div  horizontal layout style="width:215px;">
+                      <span flex>
+                        <core-icon icon="favorite"></core-icon>
+                        Likes
+                      </span>
+                      <span class="count">{{$.globals.values.likes || 0}}</span>
+                      </div>
+                    </paper-item>
+                    <paper-item>
+                      <div  horizontal layout style="width:215px;">
+                      <span flex>
+                        <core-icon icon="image:remove-red-eye"></core-icon>
+                        Views
+                      </span>
+                      <span class="count">{{$.globals.values.views || 0}}</span>
+                      </div>
+                    </paper-item>
+                    <paper-item>
+                      <div  horizontal layout style="width:215px;">
+                      <span flex>
+                        <core-icon icon="shopping-basket"></core-icon>
+                        Buckets
+                      </span>
+                      <span class="count">17</span>
+                      </div>
+                    </paper-item>
+                    <paper-item>
+                      <div  horizontal layout style="width:215px;">
+                      <span flex>
+                        <core-icon icon="send-money"></core-icon>
+                        Rebounds
+                      </span>
+                      <span class="count">{{$.globals.values.rebounds || 0}}</span>
+                      </div>
+                    </paper-item>
+                    <a href="{{$.globals.values.url}}#comments-section">
+                      <paper-item>
+                        
+                          <div  horizontal layout style="width:215px;">
+                            <span flex>
+                              <core-icon icon="communication:chat"></core-icon>
+                              Comments
+                            </span>
+                            <span class="count">{{$.globals.values.comments || 0}}</span>
+                          </div>
+                        
+                      </paper-item>
+                    </a>
+                  </paper-shadow>
+                </div>
+                <div horizontal layout style="padding:20px">
+                  <h2 flex>Comments <small style="font-size:12px">({{$.globals.values.comments || 0}})</small></h2>
+                  <paper-tabs selected="0">
+                    <paper-tab>Oldest</paper-tab>
+                    <paper-tab>Newest</paper-tab>
+                    <paper-tab>Liked</paper-tab>
+                  </paper-tabs>
+                </div>
+                <sample-content size="10"></sample-content>
+
+              </div>
+
+            </core-scroll-header-panel>
+          </div>
+          
+        </div>
+        
+      </core-header-panel>
+
+      <core-header-panel drawer="">
+        <core-toolbar class="medium-tall">
+          <div flex class="logo">Dribbble</div>
+          <paper-tabs selected="{{ selected }}" selectedindex="0" id="paper_tabs" class="bottom main-label fit">
+            <paper-tab active>Popular</paper-tab>
+            <paper-tab>Everyone</paper-tab>
+            <paper-tab>Debuts</paper-tab>
+          </paper-tabs>
+        </core-toolbar>
+        
+        
+          
+        <core-animated-pages id="core-animated-pages" transitions="slide-from-right" selected="{{ selected }}" selectedindex="0" notap id="core_animated_pages" lastselected="1" horizontal layout one flex>
+          <div>
+            <x-dribbble list="popular"></x-dribbble>
+          </div>
+          <div><x-dribbble list="everyone"></x-dribbble></div>
+          <div><x-dribbble list="debuts"></x-dribbble></div>
+        </core-animated-pages>
+        
+
+      </core-header-panel>
+
+    </core-drawer-panel>
+    <paper-fab icon="add" class="bottom" on-tap="{{toggle}}"></paper-fab>
+    <add-shot id="dialog" transition="core-transition-bottom">
+    </add-shot>
+  </template>
+  <script>
+    (function () {
+
+      Polymer({
+          // define element prototype here
+          domReady: function() {
+          // custom transformation: scale header's title
+          var titleStyle = this.$.title.style;
+          document.addEventListener('core-header-transform', function(e) {
+            var d = e.detail;
+            var m = d.height - d.condensedHeight;
+            var scale = Math.max(0.55, (m - d.y) / (m / 0.25) + 0.55);
+            titleStyle.transform = titleStyle.webkitTransform =
+              'scale(' + scale + ') translateZ(0)';
+          });
+        },
+        willPrepare: function() {
+          this.super();
+          // Measure the core-scroll-header-panel, otherwise its height will
+          // be messed up
+          this.$.scrollHeaderPanel.measureHeaderHeight();
+          // Reset the scroller so every time the user comes to the page
+          this.$.scrollHeaderPanel.scroller.scrollTop = 0;
+        },
+        //tabs
+        selected: 0,
+        // dialog
+        toggle: function() {
+          this.$.dialog.toggle();
+        }
+      });
+
+    })();
+  </script>
+</polymer-element>
+<polymer-element name="html-echo" attributes="html">
+    <script>
+      Polymer('html-echo', {
+        htmlChanged: function() {
+          // WARNING: potential XSS vulnerability if `html` comes from an untrusted source
+          this.innerHTML = this.html;
+        }
+      });
+    </script>
+  </polymer-element>

@@ -24,16 +24,5 @@
   ],
   "devDependencies": {
     "webcomponentsjs": "Polymer/webcomponentsjs#^0.5.0"
-  },
-  "homepage": "https://github.com/Polymer/web-component-tester",
-  "version": "2.0.5",
-  "_release": "2.0.5",
-  "_resolution": {
-    "type": "version",
-    "tag": "v2.0.5",
-    "commit": "853477bc8579658a1e752b7e2c7c05f064531931"
-  },
-  "_source": "git://github.com/Polymer/web-component-tester.git",
-  "_target": "^2.0.0",
-  "_originalSource": "Polymer/web-component-tester"
+  }
 }
