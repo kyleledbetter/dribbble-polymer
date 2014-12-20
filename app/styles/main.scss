@@ -60,6 +60,14 @@ img {
   core-toolbar {
     background-color: $primary;
   }
+  #toolbar {
+    @media(max-width: 980px) {
+      background-size: auto 100% !important;
+    }
+    @media(min-width: 981px) {
+      background-size: 100% auto !important;
+    }
+  }
   .card-content {
     paper-item {
       background: white;
