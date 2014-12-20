@@ -150,12 +150,6 @@ img {
     background-size: 100% auto;
     //background-image:url('https://d13yacurqjgara.cloudfront.net/users/78806/screenshots/1822558/casette_lollipop.jpg');
   }
-  #condensedHeaderBg {
-    &core-toolbar {
-      background-color: $secondary !important;
-    }
-    
-  }
   /* background for toolbar when it is condensed */
   core-scroll-header-panel::shadow #condensedHeaderBg {
     background-color: $secondary;
