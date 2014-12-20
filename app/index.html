@@ -14,18 +14,7 @@
   <!-- endbuild-->
 
   <!-- build:js bower_components/webcomponentsjs/webcomponents.min.js -->
-  <!-- Conditionally load WC polyfills -->
-  <!-- Thanks to https://github.com/geelen/x-gif for the snippet -->
-  <script>
-    if ('registerElement' in document
-      && 'createShadowRoot' in HTMLElement.prototype
-      && 'import' in document.createElement('link')
-      && 'content' in document.createElement('template')) {
-      // We're using a browser with native WC support!
-    } else {
-      document.write('<script src="bower_components/webcomponentsjs/webcomponents.js"><\/script>');
-    }
-  </script>
+  <script src="bower_components/webcomponentsjs/webcomponents.js"></script>
   <!-- endbuild -->
 
   <!-- build:vulcanized elements/elements.vulcanized.html -->
