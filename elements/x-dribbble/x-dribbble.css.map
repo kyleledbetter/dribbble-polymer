@@ -1,7 +1,0 @@
-{
-"version": 3,
-"mappings": "AAIA,KAAM,CACJ,OAAO,CAAE,KAAK,CAEhB,YAAa,CACX,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI",
-"sources": ["../../../app/elements/x-dribbble/x-dribbble.scss"],
-"names": [],
-"file": "x-dribbble.css"
-}
